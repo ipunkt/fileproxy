@@ -8,6 +8,14 @@ File Proxy provides file sharing with a bit more management. You can share files
 
 Every download gets checked and access statistics will be stored.
 
+You can upload files for sharing or you can provide an url to be shared.
+
+For every file you want to share you can create several aliases with an access policy.
+
+For example:
+
+You have file `pricelist.pdf` and you want to share with your clients. But every client should get his own, so you can check the download history for each. So you create one alias for the `pricelist.pdf` for each of your clients: `client1-pricelist.pdf`, `client2-pricelist-2017.pdf` and so on. Every alias can be configured individually - in the example maybe a time-limited and hit-limited download. So each client can only download this file 10 times until the end of this year.
+
 
 ## Installation
 
