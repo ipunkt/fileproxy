@@ -1,0 +1,99 @@
+// Fonts
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,600);
+
+// Variables
+//@import "variables";
+
+// Bootstrap
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+html, body {
+	background-color: #ffffff;
+	color: #636b6f;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+	font-size: 16px;
+	height: 100vh;
+	margin: 0;
+}
+
+.full-height {
+	height: 100vh;
+}
+
+.flex-center {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.flex-top-left {
+	align-items: flex-start;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.position-ref {
+	position: relative;
+}
+
+.top-left {
+	position: absolute;
+	left: 0;
+	top: 1rem;
+}
+
+.top-right {
+	position: absolute;
+	right: 0;
+	top: 1rem;
+}
+
+.centered-content {
+	text-align: center;
+}
+
+.content {
+	margin: 4rem 2rem;
+	width: 100%;
+}
+
+.links > a {
+	color: #636b6f;
+	padding: 1.25rem 2rem;
+	font-size: .75rem;
+	font-weight: 600;
+	letter-spacing: .1rem;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.title {
+	font-size: 5.25rem;
+}
+
+.m-b-md {
+	margin-bottom: 2rem;
+}
+
+label {
+	width: 18rem;
+    display: inline-block;
+    padding-bottom: 1rem;
+}
+
+.card {
+	border: 1px solid gray;
+	margin: 1rem;
+	padding: 2rem;
+	border-radius: 1rem;
+	box-shadow: 1px 1px 2px gray;
+	min-width: 8rem;
+
+	.number {
+		display: block;
+		font-size: 2rem;
+		font-weight: 600;
+	}
+}
