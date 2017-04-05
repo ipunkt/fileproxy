@@ -2,6 +2,12 @@
 
 A Laravel-based file proxy application. Ready to go.
 
+## Purpose
+
+File Proxy provides file sharing with a bit more management. You can share files with one-time links, x-time links, time-based links and so on.
+
+Every download gets checked and access statistics will be stored.
+
 
 ## Installation
 
