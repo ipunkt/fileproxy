@@ -39,10 +39,11 @@ class CreateRemoteFileTest extends TestCase
             'options' => null,
             'proxy_file_id' => 1,
             //  sha1(1) => 356a192b7913b04c54574d18c28d46e6395428ab
-            'path' => 'remote/35/6a/356a192b7913b04c54574d18c28d46e6395428ab',
+//            'path' => 'remote/35/6a/356a192b7913b04c54574d18c28d46e6395428ab',
+            'path' => null,
         ]);
         $remoteFile = RemoteFile::first();
-        $this->assertTrue($filesystem->has($remoteFile->path));
+        $this->assertFalse($filesystem->has($remoteFile->path));
     }
 
     /** @test */
