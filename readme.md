@@ -141,7 +141,7 @@ Link for convenience: http://localhost:9755
 Service Fileproxy was exposed to the ports 18129
 Link for convenience: http://localhost:18129
 ```
-We provide a local [PMA](http://localhost:9755) and the [web application frontend](http://localhost:18129). 
+We provide a local [phpMyAdmin](http://localhost:9755) and the [web application frontend](http://localhost:18129). 
 
 ## Assets
 
