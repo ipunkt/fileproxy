@@ -19,14 +19,14 @@ class LocalFileModelTest extends TestCase
         /** @var ProxyFile $proxyFile */
         $proxyFile = factory(ProxyFile::class)->create();
 
-    	// ACT
+        // ACT
         /** @var LocalFile $localFile */
         $localFile = factory(LocalFile::class)->make([
             'proxy_file_id' => $proxyFile->getKey(),
         ]);
 
-    	// ASSERT
-    	$this->assertTrue($localFile->save());
+        // ASSERT
+        $this->assertTrue($localFile->save());
     }
 
     /** @test */
@@ -36,11 +36,11 @@ class LocalFileModelTest extends TestCase
         /** @var LocalFile $localFile */
         $localFile = factory(LocalFile::class, 'full')->create();
 
-    	// ACT
+        // ACT
         $proxyFile = $localFile->proxyFile;
 
-    	// ASSERT
-    	$this->assertEquals(1, $proxyFile->getKey());
-    	$this->assertInstanceOf(ProxyFile::class, $proxyFile);
+        // ASSERT
+        $this->assertEquals(1, $proxyFile->getKey());
+        $this->assertInstanceOf(ProxyFile::class, $proxyFile);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\CreateLocalFile;
 use App\LocalFile;
+use Tests\TestCase;
+use Ramsey\Uuid\Uuid;
+use App\Jobs\CreateLocalFile;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Http\UploadedFile;
-use Ramsey\Uuid\Uuid;
-use Tests\TestCase;
 
 class CreateLocalFileTest extends TestCase
 {

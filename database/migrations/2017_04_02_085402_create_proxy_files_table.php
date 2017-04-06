@@ -18,9 +18,9 @@ class CreateProxyFilesTable extends Migration
             $table->string('reference', 36)->unique();
             $table->enum('type', ['remote', 'local']);
             $table->string('filename');
-            $table->string('mimetype');//  application/pdf, ...
-            $table->unsignedBigInteger('size');// size in bytes
-            $table->string('checksum');// hash/checksum of file
+            $table->string('mimetype'); //  application/pdf, ...
+            $table->unsignedBigInteger('size'); // size in bytes
+            $table->string('checksum'); // hash/checksum of file
             $table->timestamps();
         });
     }

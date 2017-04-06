@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\CreateFileAlias;
 use App\ProxyFile;
 use Carbon\Carbon;
+use Tests\TestCase;
+use Ramsey\Uuid\Uuid;
+use App\Jobs\CreateFileAlias;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Ramsey\Uuid\Uuid;
-use Tests\TestCase;
 
 class CreateFileAliasTest extends TestCase
 {
@@ -28,10 +28,10 @@ class CreateFileAliasTest extends TestCase
         $validUntil = null;
         $path = 'rezept-21.pdf';
 
-    	// ACT
+        // ACT
         dispatch(new CreateFileAlias($proxyFile, $path, $hits, $validFrom, $validUntil));
 
-    	// ASSERT
+        // ASSERT
         $this->assertDatabaseHas('file_aliases', [
             'path' => 'rezept-21.pdf',
             'hits_left' => null,
@@ -54,10 +54,10 @@ class CreateFileAliasTest extends TestCase
         $validUntil = null;
         $path = 'rezept-21.pdf';
 
-    	// ACT
+        // ACT
         dispatch(new CreateFileAlias($proxyFile, $path, $hits, $validFrom, $validUntil));
 
-    	// ASSERT
+        // ASSERT
         $this->assertDatabaseHas('file_aliases', [
             'path' => 'rezept-21.pdf',
             'hits_left' => 1,
@@ -80,10 +80,10 @@ class CreateFileAliasTest extends TestCase
         $validUntil = Carbon::tomorrow();
         $path = 'rezept-21.pdf';
 
-    	// ACT
+        // ACT
         dispatch(new CreateFileAlias($proxyFile, $path, $hits, $validFrom, $validUntil));
 
-    	// ASSERT
+        // ASSERT
         $this->assertDatabaseHas('file_aliases', [
             'path' => 'rezept-21.pdf',
             'hits_left' => 1,
@@ -107,10 +107,10 @@ class CreateFileAliasTest extends TestCase
         $validUntil = Carbon::tomorrow();
         $path = 'rezept-21.pdf';
 
-    	// ACT
+        // ACT
         dispatch(new CreateFileAlias($proxyFile, $path, $hits, $validFrom, $validUntil));
 
-    	// ASSERT
+        // ASSERT
         $this->assertDatabaseHas('file_aliases', [
             'path' => 'rezept-21.pdf',
             'hits_left' => null,

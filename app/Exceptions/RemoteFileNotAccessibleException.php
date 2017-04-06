@@ -10,7 +10,7 @@ class RemoteFileNotAccessibleException extends \Exception
     private $url;
 
     /**
-     * constructing RemoteFileNotAccessibleException
+     * constructing RemoteFileNotAccessibleException.
      *
      * @param string $url
      */
@@ -18,7 +18,7 @@ class RemoteFileNotAccessibleException extends \Exception
     {
         $this->url = $url;
 
-        parent::__construct('Remote file ' . $this->url . ' is not accessible.');
+        parent::__construct('Remote file '.$this->url.' is not accessible.');
     }
 
     public function url(): string

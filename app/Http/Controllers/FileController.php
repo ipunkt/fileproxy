@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateFileRequest;
-use App\Http\Requests\UploadFileRequest;
-use App\Jobs\CreateLocalFile;
-use App\Jobs\UpdateProxyFile;
 use App\ProxyFile;
 use Ramsey\Uuid\Uuid;
+use App\Jobs\CreateLocalFile;
+use App\Jobs\UpdateProxyFile;
+use App\Http\Requests\UpdateFileRequest;
+use App\Http\Requests\UploadFileRequest;
 
 class FileController extends Controller
 {

@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\FileAlias
+ * App\FileAlias.
  *
  * @property int $id
  * @property int $proxy_file_id
@@ -60,7 +60,7 @@ class FileAlias extends Model
     }
 
     /**
-     * do we have any hits left
+     * do we have any hits left.
      *
      * @return bool
      */
@@ -72,7 +72,7 @@ class FileAlias extends Model
     }
 
     /**
-     * is the file alias valid now
+     * is the file alias valid now.
      *
      * @return bool
      */
@@ -87,7 +87,7 @@ class FileAlias extends Model
     }
 
     /**
-     * tracks a hit
+     * tracks a hit.
      *
      * @param string|null $userAgent
      *

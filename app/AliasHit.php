@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\AliasHit
+ * App\AliasHit.
  *
  * @property int $id
  * @property int $file_alias_id

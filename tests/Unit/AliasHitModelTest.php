@@ -4,7 +4,6 @@ namespace Tests\Unit;
 
 use App\AliasHit;
 use App\FileAlias;
-use App\ProxyFile;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -20,13 +19,13 @@ class AliasHitModelTest extends TestCase
         /** @var FileAlias $fileAlias */
         $fileAlias = factory(FileAlias::class, 'full')->create();
 
-    	// ACT
+        // ACT
         /** @var AliasHit $aliasHit */
         $aliasHit = factory(AliasHit::class)->make([
             'file_alias_id' => $fileAlias->getKey(),
         ]);
 
-    	// ASSERT
-    	$this->assertTrue($aliasHit->save());
+        // ASSERT
+        $this->assertTrue($aliasHit->save());
     }
 }

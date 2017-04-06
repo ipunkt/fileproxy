@@ -6,7 +6,7 @@ use App\Traits\FileSeparationConcern;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\RemoteFile
+ * App\RemoteFile.
  *
  * @property int $id
  * @property int $proxy_file_id
@@ -46,6 +46,6 @@ class RemoteFile extends Model
 
     public function getLocalStoragePath(): string
     {
-        return 'remote/' . $this->getPathSeparated($this->getKey());
+        return 'remote/'.$this->getPathSeparated($this->getKey());
     }
 }

@@ -20,11 +20,11 @@ class ProxyFileModelTest extends TestCase
     {
         // ARRANGE
 
-    	// ACT
+        // ACT
         /** @var ProxyFile $proxyFile */
         $proxyFile = factory(ProxyFile::class, 'local')->create();
 
-    	// ASSERT
+        // ASSERT
         $this->assertTrue($proxyFile->save());
         $this->assertEquals('local', $proxyFile->type);
     }
@@ -34,11 +34,11 @@ class ProxyFileModelTest extends TestCase
     {
         // ARRANGE
 
-    	// ACT
+        // ACT
         /** @var ProxyFile $proxyFile */
         $proxyFile = factory(ProxyFile::class, 'remote')->create();
 
-    	// ASSERT
+        // ASSERT
         $this->assertTrue($proxyFile->save());
         $this->assertEquals('remote', $proxyFile->type);
     }
@@ -55,14 +55,13 @@ class ProxyFileModelTest extends TestCase
             'proxy_file_id' => $proxyFile->getKey(),
         ]);
 
-    	// ACT
-    	$localFileResolved = $proxyFile->localFile;
+        // ACT
+        $localFileResolved = $proxyFile->localFile;
 
-    	// ASSERT
+        // ASSERT
         $this->assertInstanceOf(LocalFile::class, $localFileResolved);
-    	$this->assertSame($localFile->getKey(), $localFileResolved->getKey());
+        $this->assertSame($localFile->getKey(), $localFileResolved->getKey());
     }
-
 
     /** @test */
     public function it_can_resolve_remote_file_instance()
@@ -76,12 +75,12 @@ class ProxyFileModelTest extends TestCase
             'proxy_file_id' => $proxyFile->getKey(),
         ]);
 
-    	// ACT
-    	$remoteFileResolved = $proxyFile->remoteFile;
+        // ACT
+        $remoteFileResolved = $proxyFile->remoteFile;
 
-    	// ASSERT
+        // ASSERT
         $this->assertInstanceOf(RemoteFile::class, $remoteFileResolved);
-    	$this->assertSame($remoteFile->getKey(), $remoteFileResolved->getKey());
+        $this->assertSame($remoteFile->getKey(), $remoteFileResolved->getKey());
     }
 
     /** @test */
@@ -96,12 +95,12 @@ class ProxyFileModelTest extends TestCase
             'proxy_file_id' => $proxyFile->getKey(),
         ]);
 
-    	// ACT
-    	$localFileResolved = $proxyFile->file;
+        // ACT
+        $localFileResolved = $proxyFile->file;
 
-    	// ASSERT
+        // ASSERT
         $this->assertInstanceOf(LocalFile::class, $localFileResolved);
-    	$this->assertSame($localFile->getKey(), $localFileResolved->getKey());
+        $this->assertSame($localFile->getKey(), $localFileResolved->getKey());
     }
 
     /** @test */
@@ -116,12 +115,12 @@ class ProxyFileModelTest extends TestCase
             'proxy_file_id' => $proxyFile->getKey(),
         ]);
 
-    	// ACT
-    	$remoteFileResolved = $proxyFile->file;
+        // ACT
+        $remoteFileResolved = $proxyFile->file;
 
-    	// ASSERT
+        // ASSERT
         $this->assertInstanceOf(RemoteFile::class, $remoteFileResolved);
-    	$this->assertSame($remoteFile->getKey(), $remoteFileResolved->getKey());
+        $this->assertSame($remoteFile->getKey(), $remoteFileResolved->getKey());
     }
 
     /** @test */
@@ -134,7 +133,7 @@ class ProxyFileModelTest extends TestCase
         /** @var FileAlias $fileAlias1 */
         $fileAlias1 = $proxyFile->aliases()->create(factory(FileAlias::class)->make()->toArray());
 
-        /** @var AliasHit $aliasHit1 */
+        /* @var AliasHit $aliasHit1 */
         $fileAlias1->hits()->create(factory(AliasHit::class)->make()->toArray());
         $fileAlias1->hits()->create(factory(AliasHit::class)->make()->toArray());
 
@@ -145,10 +144,10 @@ class ProxyFileModelTest extends TestCase
         $fileAlias2->hits()->create(factory(AliasHit::class)->make()->toArray());
         $fileAlias2->hits()->create(factory(AliasHit::class)->make()->toArray());
 
-    	// ACT
+        // ACT
         $hits = $proxyFile->hits;
 
-    	// ASSERT
+        // ASSERT
         $this->assertCount(5, $hits);
         $this->assertInstanceOf(AliasHit::class, $hits[0]);
         $this->assertEquals(5, $proxyFile->hits()->count());

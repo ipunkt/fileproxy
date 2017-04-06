@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateAliasRequest;
-use App\Jobs\CreateFileAlias;
-use App\Jobs\DeleteFileAlias;
 use App\ProxyFile;
 use Carbon\Carbon;
+use App\Jobs\CreateFileAlias;
+use App\Jobs\DeleteFileAlias;
+use App\Http\Requests\CreateAliasRequest;
 
 class AliasController extends Controller
 {
     /**
-     * create a new file alias
+     * create a new file alias.
      *
      * @param CreateAliasRequest $request
      * @param string $file

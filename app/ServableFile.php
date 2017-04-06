@@ -31,7 +31,7 @@ class ServableFile implements Sendable
     }
 
     /**
-     * send file to client
+     * send file to client.
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
