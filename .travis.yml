@@ -3,6 +3,8 @@ language: php
 php:
   - '7.0'
   - '7.1'
+  - hhvm
+  - nightly
 
 env:
   APP_ENV: testing
