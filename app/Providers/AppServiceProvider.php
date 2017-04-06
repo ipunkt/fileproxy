@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!defined('MAX_STRING_LENGTH')) {
+        if (! defined('MAX_STRING_LENGTH')) {
             define('MAX_STRING_LENGTH', 191);
         }
         Schema::defaultStringLength(MAX_STRING_LENGTH);
@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(Manager::class, function () {
             $fractal = new Manager();
             $fractal->setSerializer(new JsonApiSerializer());
+
             return $fractal;
         });
     }

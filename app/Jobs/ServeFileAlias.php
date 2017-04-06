@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\FileAliasCanNotBeServed;
 use App\FileAlias;
+use App\Interfaces\Sendable;
 use App\ServableFile;
 use App\ServableRemoteFile;
-use App\Interfaces\Sendable;
-use App\Exceptions\FileAliasCanNotBeServed;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Foundation\Bus\Dispatchable;
 
 class ServeFileAlias
 {

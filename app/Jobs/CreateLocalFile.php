@@ -3,9 +3,9 @@
 namespace App\Jobs;
 
 use App\ProxyFile;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Http\UploadedFile;
 
 class CreateLocalFile
 {

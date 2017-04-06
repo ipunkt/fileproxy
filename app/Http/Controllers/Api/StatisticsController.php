@@ -8,7 +8,7 @@ use App\Transformers\StatisticsTransformer;
 class StatisticsController extends ApiController
 {
     /**
-     * sends statistics data
+     * sends statistics data.
      *
      * @param StatisticsRepository $statisticsRepository
      * @return \Illuminate\Http\JsonResponse

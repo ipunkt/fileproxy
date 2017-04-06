@@ -33,7 +33,7 @@ class CreateFileRequest extends FormRequest
     }
 
     /**
-     * is it an attachment or not
+     * is it an attachment or not.
      *
      * @return bool
      */
@@ -45,7 +45,7 @@ class CreateFileRequest extends FormRequest
     }
 
     /**
-     * returns the source: base64 encoded file content or url
+     * returns the source: base64 encoded file content or url.
      *
      * @return string
      */
@@ -59,7 +59,7 @@ class CreateFileRequest extends FormRequest
     }
 
     /**
-     * returns filename
+     * returns filename.
      *
      * @return string
      */
@@ -90,7 +90,7 @@ class CreateFileRequest extends FormRequest
             'title' => 'Validation error',
             'source' => [
                 'pointer' => $e->all(),
-            ]
+            ],
         ];
 
         return new JsonResponse($data, 422);
