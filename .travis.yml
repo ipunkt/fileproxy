@@ -20,7 +20,7 @@ branches:
 
 install:
   - composer self-update
-  - composer install --prefer-source --no-interaction
+  - composer install --no-interaction
 
 script:
-  - phpunit
+  - vendor/bin/phpunit
