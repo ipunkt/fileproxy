@@ -17,6 +17,7 @@
 		<label for="filename">Filename</label>
 		<input type="text" name="filename" value="{{ old('filename', $proxyFile->filename) }}" id="filename" minlength="6" maxlength="{{ MAX_STRING_LENGTH }}" required>
 		<br/>
+		<label></label>
 		<button type="submit">Update Filename</button>
 	</form>
 
