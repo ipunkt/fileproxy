@@ -44,6 +44,7 @@ Route::group(['middleware' => 'feature:web.accept_remote_creation'], function ()
 Route::resource('file.aliases', 'AliasController', [
     'only' => [
         'store',
+        'destroy',
     ],
 ]);
 

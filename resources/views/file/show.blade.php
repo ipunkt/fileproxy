@@ -63,7 +63,13 @@
 		@else
 		{{ $alias->hitsTotal }}
 		@endif
-		downloads <br/>
+		downloads |
+		<form method="post" action="{{ route('file.aliases.destroy', ['file' => $proxyFile->reference, 'alias' => $alias->getKey()]) }}">
+			{{ csrf_field() }}
+			{{ method_field('DELETE') }}
+			<button type="submit">Delete Alias</button>
+		</form>
+		<br/>
 	@endforeach
 
 @endsection
