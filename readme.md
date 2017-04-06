@@ -84,7 +84,7 @@ All commands for running the business functions are unit tested. You can run `co
 
 ### Local Development
 
-We (ipunkt) provide a package called rancherize for hosting our web stacks in a rancher environment with various docker images. For local development you can use rancherize command in the following way.
+We (ipunkt) provide a package called [rancherize](https://github.com/ipunkt/rancherize/tree/v2) for hosting our web stacks in a rancher environment with various docker images. For local development you can use rancherize command in the following way.
 
 You need locally docker daemon installed.
 
