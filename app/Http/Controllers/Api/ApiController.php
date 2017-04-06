@@ -35,4 +35,20 @@ class ApiController extends Controller
         return response()->json($data)
             ->header('Content-Type', 'application/vnd.api+json');
     }
+
+    /**
+     * responds created resource
+     *
+     * @param $item
+     * @param TransformerAbstract $transformer
+     * @param string $resourceName
+     * @return JsonResponse
+     */
+    protected function respondCreated($item, TransformerAbstract $transformer, string $resourceName): JsonResponse
+    {
+        $resource = new Item($item, $transformer, $resourceName);
+        $data = $this->fractal->createData($resource)->toArray();
+        return response()->json($data, 201)
+            ->header('Content-Type', 'application/vnd.api+json');
+    }
 }

@@ -11,6 +11,12 @@
 |
 */
 
+Route::resource('files', 'Api\FileController', [
+    'only' => [
+        'store',
+    ],
+]);
+
 Route::resource('statistics', 'Api\StatisticsController', [
     'only' => [
         'index',
