@@ -8,6 +8,18 @@
 
 	<h2>{{ $proxyFile->filename }}</h2>
 
+	<form method="post" action="{{ route('file.update', ['file' => $proxyFile->reference]) }}">
+		{{ csrf_field() }}
+		{{ method_field('PUT') }}
+		@if ($errors->has('path'))
+			{{ $errors->first('path') }}<br/>
+		@endif
+		<label for="filename">Filename</label>
+		<input type="text" name="filename" value="{{ old('filename', $proxyFile->filename) }}" id="filename" minlength="6" maxlength="{{ MAX_STRING_LENGTH }}" required>
+		<br/>
+		<button type="submit">Update Filename</button>
+	</form>
+
 	<p><img src="http://mimeicon.herokuapp.com/{{ $proxyFile->mimetype }}?size=64" width="64" alt="Mimetype: {{ $proxyFile->mimetype }}" title="Mimetype: {{ $proxyFile->mimetype }}"></p>
 	<p>{{ bytesToHuman($proxyFile->size) }}</p>
 	@if ($proxyFile->type === 'remote')

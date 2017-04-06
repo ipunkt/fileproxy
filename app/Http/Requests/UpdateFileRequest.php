@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateAliasRequest extends FormRequest
+class UpdateFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class CreateAliasRequest extends FormRequest
     public function rules()
     {
         return [
-            'path' => 'required|min:6|max:' . MAX_STRING_LENGTH . '|unique:file_aliases,path',
-            'hits' => 'numeric|min:0',
-            'from' => 'sometimes|nullable|date',
-            'until' => 'sometimes|nullable|date',
+            'filename' => 'required|min:6|max:' . MAX_STRING_LENGTH . '|regex:(.*?\\.[a-z0-9A-Z]+)',
         ];
     }
 }

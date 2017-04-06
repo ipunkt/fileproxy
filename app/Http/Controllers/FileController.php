@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateFileRequest;
 use App\Http\Requests\UploadFileRequest;
 use App\Jobs\CreateLocalFile;
+use App\Jobs\UpdateProxyFile;
 use App\ProxyFile;
 use Ramsey\Uuid\Uuid;
 
@@ -32,5 +34,14 @@ class FileController extends Controller
         return view('file.show')
             ->with('proxyFile', $proxyFile)
             ->with('aliases', $aliases);
+    }
+
+    public function update(UpdateFileRequest $request, string $file)
+    {
+        $proxyFile = ProxyFile::byReference($file);
+
+        $this->dispatch(new UpdateProxyFile($proxyFile, $request->get('filename')));
+
+        return redirect()->route('file.show', ['file' => $file]);
     }
 }

@@ -23,6 +23,10 @@ Route::get('file/{file}', 'FileController@show')
     ->name('file.show')
     ->where('file', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
 
+Route::match(['PUT', 'PATCH'], 'file/{file}', 'FileController@update')
+    ->name('file.update')
+    ->where('file', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
+
 Route::group(['middleware' => 'feature:web.accept_file_upload'], function () {
     Route::resource('file', 'FileController', [
         'only' => [
@@ -51,5 +55,4 @@ Route::resource('file.aliases', 'AliasController', [
 //  catch all
 Route::get('{alias}', 'ServeFileController@serve')
     ->name('serve')
-    ->where('alias', '(.*)')
-;
+    ->where('alias', '(.*)');
