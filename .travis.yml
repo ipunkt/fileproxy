@@ -3,17 +3,15 @@ language: php
 php:
   - '7.0'
   - '7.1'
-  - hhvm
-  - nightly
 
 env:
   APP_ENV: testing
   CACHE_DRIVER: array
   SESSION_DRIVER: array
   QUEUE_DRIVER: sync
-  APP_KEY: "base64:zjb4qWfXaJt6dzIHzRxCmYzA4vJWbWFKAhE+Ya78Rbs="
+  APP_KEY: 'base64:zjb4qWfXaJt6dzIHzRxCmYzA4vJWbWFKAhE+Ya78Rbs='
   DB_CONNECTION: sqlite
-  DB_DATABASE: ":memory:"
+  DB_DATABASE: ':memory:'
   MAIL_DRIVER: log
   APP_FILESYSTEM: virtual
 

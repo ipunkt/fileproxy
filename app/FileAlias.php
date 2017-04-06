@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $valid_until
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $hits_total
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\AliasHit[] $hits
  * @property-read \App\ProxyFile $proxyFile
  * @method static \Illuminate\Database\Query\Builder|\App\FileAlias whereCreatedAt($value)
