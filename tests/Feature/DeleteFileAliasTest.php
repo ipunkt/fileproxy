@@ -26,10 +26,16 @@ class DeleteFileAliasTest extends TestCase
         $fileAlias = factory(FileAlias::class)->create([
             'proxy_file_id' => $proxyFile->getKey(),
         ]);
+        $fileAlias->hits()->create([
+            'user_agent' => 'Testbrowser',
+        ]);
 
         $this->assertDatabaseHas('file_aliases', [
             'id' => $fileAlias->getKey(),
             'proxy_file_id' => $proxyFile->getKey(),
+        ]);
+        $this->assertDatabaseHas('alias_hits', [
+            'file_alias_id' => $fileAlias->getKey(),
         ]);
 
         // ACT
@@ -39,6 +45,9 @@ class DeleteFileAliasTest extends TestCase
         $this->assertDatabaseMissing('file_aliases', [
             'id' => $fileAlias->getKey(),
             'proxy_file_id' => $proxyFile->getKey(),
+        ]);
+        $this->assertDatabaseMissing('alias_hits', [
+            'file_alias_id' => $fileAlias->getKey(),
         ]);
     }
 

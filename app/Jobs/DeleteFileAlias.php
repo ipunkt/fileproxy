@@ -25,6 +25,7 @@ class DeleteFileAlias
         try {
             DB::beginTransaction();
 
+            $this->fileAlias->hits()->delete();
             $this->fileAlias->delete();
 
             DB::commit();
