@@ -18,7 +18,7 @@ class CreateFileAliasesTable extends Migration
             $table->unsignedBigInteger('proxy_file_id');
             $table->string('path')->unique();
             $table->unsignedBigInteger('hits_left')->nullable()->default(null);
-            $table->timestamp('valid_from');
+            $table->timestamp('valid_from')->nullable();
             $table->timestamp('valid_until')->nullable()->default(null);
             $table->timestamps();
         });
