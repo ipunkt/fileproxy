@@ -1,3 +1,14 @@
 preset: laravel
 
 linting: true
+
+enabled:
+  - alpha_ordered_imports
+
+disabled:
+  - phpdoc_annotation_without_dot
+  - length_ordered_imports
+
+finder:
+  exclude:
+    - "tests"
