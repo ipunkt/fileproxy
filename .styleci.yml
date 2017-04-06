@@ -99,9 +99,6 @@ enabled:
   - unix_line_endings
   - whitespace_after_comma_in_array
 
-disabled:
-  - phpdoc_annotation_without_dot
-
 finder:
   exclude:
     - "tests"
