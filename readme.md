@@ -2,6 +2,8 @@
 
 A Laravel-based file proxy application. Ready to go.
 
+[![Build Status](https://travis-ci.org/ipunkt/fileproxy.svg?branch=master)](https://travis-ci.org/ipunkt/fileproxy)
+
 ## Purpose
 
 File Proxy provides file sharing with a bit more management. You can share files with one-time links, x-time links, time-based links and so on.
