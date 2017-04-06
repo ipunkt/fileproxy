@@ -8,7 +8,7 @@
 
 	<h2>{{ $proxyFile->filename }}</h2>
 
-	<p><img src="http://mimeicon.herokuapp.com/{{ $proxyFile->mimetype }}?size=64" width="64"></p>
+	<p><img src="http://mimeicon.herokuapp.com/{{ $proxyFile->mimetype }}?size=64" width="64" alt="Mimetype: {{ $proxyFile->mimetype }}" title="Mimetype: {{ $proxyFile->mimetype }}"></p>
 	<p>{{ bytesToHuman($proxyFile->size) }}</p>
 	@if ($proxyFile->type === 'remote')
 	<p>Source: {{ $proxyFile->remoteFile->url }}</p>
