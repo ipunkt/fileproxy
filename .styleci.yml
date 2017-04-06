@@ -4,7 +4,6 @@ linting: true
 
 disabled:
   - length_ordered_imports
-  - phpdoc_annotation_without_dot
 
 enabled:
   - alpha_ordered_imports
