@@ -61,6 +61,8 @@ enabled:
   - normalize_index_brace
   - not_operator_with_successor_space
   - object_operator_without_whitespace
+  - phpdoc_add_missing_param_annotation
+  - phpdoc_annotation_without_dot
   - phpdoc_indent
   - phpdoc_inline_tag
   - phpdoc_no_access
