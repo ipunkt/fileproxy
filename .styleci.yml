@@ -4,11 +4,11 @@ linting: true
 
 disabled:
   - length_ordered_imports
+  - phpdoc_annotation_without_dot
 
 enabled:
   - alpha_ordered_imports
   - phpdoc_add_missing_param_annotation
-  - phpdoc_annotation_without_dot
 
 finder:
   exclude:
