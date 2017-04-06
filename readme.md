@@ -26,6 +26,12 @@ composer create-project --prefer-dist ipunkt/fileproxy your-file-proxy-app
 
 or simply download from [github](https://github.io/ipunkt/fileproxy).
 
+For building assets you need node/yarn.
+
+```bash
+yarn
+```
+
 After installing files locally you should configure your application. We have several running modes and conditional behaviour, so read out configuration chapter carefully.
 
 ## Recommendations
@@ -73,3 +79,80 @@ You can enable or disable the ability to create remote files via web frontend. T
 ## Test
 
 All commands for running the business functions are unit tested. You can run `composer test` to run our test suite.
+
+### Local Development
+
+We (ipunkt) provide a package called rancherize for hosting our web stacks in a rancher environment with various docker images. For local development you can use rancherize command in the following way.
+
+You need locally docker daemon installed.
+
+Copy following content in a `rancherize.json` file in your project root:
+```json
+{
+    "blueprints": {
+        "webserver": "Rancherize\\Blueprint\\Webserver\\WebserverBlueprint"
+    },
+    "blueprint": "webserver",
+    "default": {
+        "rancher": {
+            "account": "ipunkt"
+        },
+        "docker": {
+            "account": "default",
+            "repository": "repo\/name",
+            "version-prefix": "",
+            "base-image": "busybox"
+        },
+        "nginx-config": "",
+        "service-name": "Fileproxy"
+    },
+    "environments": {
+        "local": {
+            "debug-image": true,
+            "sync-user-into-container": true,
+            "expose-port": 18129,
+            "use-app-container": false,
+            "mount-workdir": true,
+            "add-redis": false,
+            "add-database": true,
+            "database": {
+                "pma": {
+                    "enable": true,
+                    "require-login": false,
+                    "expose": true
+                },
+                "pma-port": 9755
+            },
+            "php": "7.0",
+            "environment": {
+                "APP_ENV": "local",
+                "APP_DEBUG": true,
+                "APP_KEY": "base64:jid3KQRva+vTtpU2mK6hvWxrLI6vmOmIwn\/AEAH4ua0="
+            }
+        }
+    }
+}
+```
+
+Then hit `vendor/bin/rancherize start local` and wait until the command line shows you the following output:
+```bash
+Service PMA was exposed to the ports 9755
+Link for convenience: http://localhost:9755
+Service Fileproxy was exposed to the ports 18129
+Link for convenience: http://localhost:18129
+```
+We provide a local [PMA](http://localhost:9755) and the [web application frontend](http://localhost:18129). 
+
+## Assets
+
+Build all assets with the command
+```bash
+yarn run dev
+```
+or
+```bash
+yarn run prod
+```
+for production output.
+
+We ship already-built assets in this repository. So you do not need to build your own.
