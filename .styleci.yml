@@ -2,6 +2,9 @@ preset: laravel
 
 linting: true
 
+disabled:
+  - length_ordered_imports
+
 enabled:
   - alpha_ordered_imports
   - phpdoc_add_missing_param_annotation
