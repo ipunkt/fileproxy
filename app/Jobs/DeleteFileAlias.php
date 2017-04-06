@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\FileAlias;
 use DB;
+use App\FileAlias;
 use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteFileAlias

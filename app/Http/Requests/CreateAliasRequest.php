@@ -24,7 +24,7 @@ class CreateAliasRequest extends FormRequest
     public function rules()
     {
         return [
-            'path' => 'required|min:6|max:' . MAX_STRING_LENGTH . '|unique:file_aliases,path',
+            'path' => 'required|min:6|max:'.MAX_STRING_LENGTH.'|unique:file_aliases,path',
             'hits' => 'numeric|min:0',
             'from' => 'sometimes|nullable|date',
             'until' => 'sometimes|nullable|date',

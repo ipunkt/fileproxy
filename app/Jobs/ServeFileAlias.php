@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\FileAliasCanNotBeServed;
 use App\FileAlias;
-use App\Interfaces\Sendable;
 use App\ServableFile;
 use App\ServableRemoteFile;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use App\Interfaces\Sendable;
+use App\Exceptions\FileAliasCanNotBeServed;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class ServeFileAlias
 {
@@ -47,7 +47,7 @@ class ServeFileAlias
         $file = $proxyFile->file->path;
         if ($fileSystem->exists($file)) {
             return new ServableFile(
-                config('filesystems.disks.' . config('filesystems.default') . '.root') . DIRECTORY_SEPARATOR . $file,
+                config('filesystems.disks.'.config('filesystems.default').'.root').DIRECTORY_SEPARATOR.$file,
                 $proxyFile->filename,
                 $proxyFile->mimetype,
                 $proxyFile->checksum
@@ -67,7 +67,7 @@ class ServeFileAlias
     }
 
     /**
-     * validates visibility of an alias
+     * validates visibility of an alias.
      *
      * @param \App\FileAlias $fileAlias
      *
@@ -75,11 +75,11 @@ class ServeFileAlias
      */
     private function validateFileAlias(FileAlias $fileAlias)
     {
-        if ( ! $fileAlias->hitsLeft()) {
+        if (! $fileAlias->hitsLeft()) {
             throw FileAliasCanNotBeServed::noHitsLeft();
         }
 
-        if ( ! $fileAlias->isValidNow()) {
+        if (! $fileAlias->isValidNow()) {
             throw FileAliasCanNotBeServed::notVisible();
         }
     }

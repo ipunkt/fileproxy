@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\CreateRemoteFile;
 use App\RemoteFile;
+use Tests\TestCase;
+use Ramsey\Uuid\Uuid;
+use App\Jobs\CreateRemoteFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Ramsey\Uuid\Uuid;
-use Tests\TestCase;
 
 class CreateRemoteFileTest extends TestCase
 {

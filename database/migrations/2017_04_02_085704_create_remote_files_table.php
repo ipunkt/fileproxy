@@ -17,8 +17,8 @@ class CreateRemoteFilesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('proxy_file_id');
             $table->text('url');
-            $table->text('options')->nullable()->default(null);// http request options
-            $table->string('path')->nullable()->default(null);// local file path for caching
+            $table->text('options')->nullable()->default(null); // http request options
+            $table->string('path')->nullable()->default(null); // local file path for caching
             $table->timestamps();
         });
     }

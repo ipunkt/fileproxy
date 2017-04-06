@@ -19,14 +19,14 @@ class RemoteFileModelTest extends TestCase
         /** @var ProxyFile $proxyFile */
         $proxyFile = factory(ProxyFile::class)->create();
 
-    	// ACT
+        // ACT
         /** @var RemoteFile $remoteFile */
         $remoteFile = factory(RemoteFile::class)->make([
             'proxy_file_id' => $proxyFile->getKey(),
         ]);
 
-    	// ASSERT
-    	$this->assertTrue($remoteFile->save());
+        // ASSERT
+        $this->assertTrue($remoteFile->save());
     }
 
     /** @test */
@@ -36,11 +36,11 @@ class RemoteFileModelTest extends TestCase
         /** @var RemoteFile $remoteFile */
         $remoteFile = factory(RemoteFile::class, 'full')->create();
 
-    	// ACT
+        // ACT
         $proxyFile = $remoteFile->proxyFile;
 
-    	// ASSERT
-    	$this->assertEquals(1, $proxyFile->getKey());
-    	$this->assertInstanceOf(ProxyFile::class, $proxyFile);
+        // ASSERT
+        $this->assertEquals(1, $proxyFile->getKey());
+        $this->assertInstanceOf(ProxyFile::class, $proxyFile);
     }
 }

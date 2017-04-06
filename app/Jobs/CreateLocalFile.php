@@ -3,9 +3,9 @@
 namespace App\Jobs;
 
 use App\ProxyFile;
-use Illuminate\Contracts\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class CreateLocalFile
 {
@@ -55,7 +55,7 @@ class CreateLocalFile
         /** @var Filesystem|\Illuminate\Filesystem\FilesystemAdapter $filesystem */
         $filesystem = app(Filesystem::class);
 
-        if ( ! $filesystem->exists('local')) {
+        if (! $filesystem->exists('local')) {
             $filesystem->makeDirectory('local');
         }
 

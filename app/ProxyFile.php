@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\ProxyFile
+ * App\ProxyFile.
  *
  * @property int $id
  * @property string $reference

@@ -1,6 +1,6 @@
 <?php
 
-if ( ! function_exists('bytesToHuman')) {
+if (! function_exists('bytesToHuman')) {
     function bytesToHuman($bytes)
     {
         $units = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'];
@@ -9,6 +9,6 @@ if ( ! function_exists('bytesToHuman')) {
             $bytes /= 1024;
         }
 
-        return round($bytes, 2) . ' ' . $units[$i];
+        return round($bytes, 2).' '.$units[$i];
     }
 }

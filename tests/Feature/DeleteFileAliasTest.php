@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use App\FileAlias;
-use App\Jobs\DeleteFileAlias;
 use App\LocalFile;
+use Tests\TestCase;
+use App\Jobs\DeleteFileAlias;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tests\TestCase;
 
 class DeleteFileAliasTest extends TestCase
 {
@@ -50,5 +50,4 @@ class DeleteFileAliasTest extends TestCase
             'file_alias_id' => $fileAlias->getKey(),
         ]);
     }
-
 }

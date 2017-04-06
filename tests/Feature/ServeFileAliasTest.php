@@ -2,18 +2,18 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\FileAliasCanNotBeServed;
 use App\FileAlias;
-use App\Jobs\CreateFileAlias;
-use App\Jobs\ServeFileAlias;
 use App\LocalFile;
 use App\ProxyFile;
-use App\ServableFile;
 use Carbon\Carbon;
+use Tests\TestCase;
+use App\ServableFile;
+use Ramsey\Uuid\Uuid;
+use App\Jobs\ServeFileAlias;
+use App\Jobs\CreateFileAlias;
+use App\Exceptions\FileAliasCanNotBeServed;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Ramsey\Uuid\Uuid;
-use Tests\TestCase;
 
 class ServeFileAliasTest extends TestCase
 {

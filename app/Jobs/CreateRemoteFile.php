@@ -2,18 +2,18 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\RemoteFileNotAccessibleException;
 use App\ProxyFile;
 use App\RemoteFile;
+use Mimey\MimeTypes;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Str;
-use Mimey\MimeTypes;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use App\Exceptions\RemoteFileNotAccessibleException;
 
 class CreateRemoteFile implements ShouldQueue
 {
@@ -58,7 +58,7 @@ class CreateRemoteFile implements ShouldQueue
         try {
             \DB::beginTransaction();
 
-            $content = (string)$response->getBody();
+            $content = (string) $response->getBody();
 
             $filename = basename($this->url);
             $parts = explode('.', $filename);
@@ -88,14 +88,14 @@ class CreateRemoteFile implements ShouldQueue
         } catch (\Exception $exception) {
             \DB::rollBack();
             if ($path !== null) {
-                @unlink(storage_path('app' . DIRECTORY_SEPARATOR . $path));
+                @unlink(storage_path('app'.DIRECTORY_SEPARATOR.$path));
             }
             throw $exception;
         }
     }
 
     /**
-     * cache remote file locally
+     * cache remote file locally.
      *
      * @param \App\RemoteFile $remoteFile
      * @param string $content
@@ -108,7 +108,7 @@ class CreateRemoteFile implements ShouldQueue
 
         /** @var Filesystem|\Illuminate\Filesystem\FilesystemAdapter $filesystem */
         $filesystem = app(Filesystem::class);
-        if ( ! $filesystem->exists('remote')) {
+        if (! $filesystem->exists('remote')) {
             $filesystem->makeDirectory('remote');
         }
 

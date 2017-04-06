@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\UpdateProxyFile;
 use App\ProxyFile;
+use Tests\TestCase;
+use App\Jobs\UpdateProxyFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tests\TestCase;
 
 class UpdateProxyFileTest extends TestCase
 {
@@ -30,5 +30,4 @@ class UpdateProxyFileTest extends TestCase
             'filename' => 'new.pdf',
         ]);
     }
-
 }

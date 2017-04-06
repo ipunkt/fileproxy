@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!defined('MAX_STRING_LENGTH')) {
+        if (! defined('MAX_STRING_LENGTH')) {
             define('MAX_STRING_LENGTH', 191);
         }
         Schema::defaultStringLength(MAX_STRING_LENGTH);

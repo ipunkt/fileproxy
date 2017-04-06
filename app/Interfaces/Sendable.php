@@ -1,4 +1,6 @@
-<?php namespace App\Interfaces;
+<?php
+
+namespace App\Interfaces;
 
 interface Sendable
 {

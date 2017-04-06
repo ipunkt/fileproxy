@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUrlRequest;
-use App\Jobs\CreateRemoteFile;
 use App\ProxyFile;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Ramsey\Uuid\Uuid;
+use App\Jobs\CreateRemoteFile;
+use App\Http\Requests\CreateUrlRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UrlController extends Controller
 {
@@ -31,8 +31,8 @@ class UrlController extends Controller
             if ($proxyFile->remoteFile !== null) {
                 return redirect()->route('file.show', ['file' => $url]);
             }
-        } catch (ModelNotFoundException $exception)
-        {}
+        } catch (ModelNotFoundException $exception) {
+        }
 
         return view('url.show')
             ->with('reference', $url);
