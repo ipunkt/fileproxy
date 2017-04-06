@@ -16,7 +16,8 @@
 		"laravel/framework": "5.4.*",
 		"laravel/tinker": "~1.0",
 		"ralouphie/mimey": "^1.0",
-		"ramsey/uuid": "^3.6"
+		"ramsey/uuid": "^3.6",
+		"league/fractal": "^0.16"
 	},
 	"require-dev": {
 		"barryvdh/laravel-ide-helper": "^2.3",

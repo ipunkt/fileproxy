@@ -2,28 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\ProxyFile;
+use App\Repositories\StatisticsRepository;
 
 class StatisticsController extends Controller
 {
-    public function index()
+    /**
+     * sends statistics data
+     *
+     * @param StatisticsRepository $statisticsRepository
+     * @return $this
+     */
+    public function index(StatisticsRepository $statisticsRepository)
     {
-        $proxyFiles = ProxyFile::all();
-
-        $size = $proxyFiles->sum('size');
-
-        $aliases = $proxyFiles->sum(function (ProxyFile $proxyFile) {
-            return $proxyFile->aliases()->count();
-        });
-
-        $hits = $proxyFiles->sum(function (ProxyFile $proxyFile) {
-            return $proxyFile->hits()->count();
-        });
-
         return view('statistics')
-            ->with('size', $size)
-            ->with('files', $proxyFiles->count())
-            ->with('aliases', $aliases)
-            ->with('hits', $hits);
+            ->with($statisticsRepository->getStatistics()->all());
     }
 }
