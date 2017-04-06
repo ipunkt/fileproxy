@@ -16,4 +16,29 @@
 		<li>serve uploaded files</li>
 	</ul>
 
+	<h2>Documentation</h2>
+
+	<h3>API</h3>
+
+	<h4>Statistics Endpoint</h4>
+
+	<p><strong><kbd>GET /api/statistics</kbd></strong></p>
+
+	<p>You can retrieve the whole statistics for the file proxy application.</p>
+
+	<pre><code>
+{
+  "data": {
+    "type": "statistics",
+    "id": "statistics",
+    "attributes": {
+      "size": 0,
+      "files": 0,
+      "aliases": 0,
+      "hits": 0
+    }
+  }
+}
+	</code></pre>
+
 @endsection

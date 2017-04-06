@@ -13,6 +13,6 @@
 
 Route::resource('statistics', 'Api\StatisticsController', [
     'only' => [
-        'index'
+        'index',
     ],
 ]);
