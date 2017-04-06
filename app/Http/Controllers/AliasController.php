@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ProxyFile;
-use Carbon\Carbon;
+use App\Http\Requests\CreateAliasRequest;
 use App\Jobs\CreateFileAlias;
 use App\Jobs\DeleteFileAlias;
-use App\Http\Requests\CreateAliasRequest;
+use App\ProxyFile;
+use Carbon\Carbon;
 
 class AliasController extends Controller
 {
