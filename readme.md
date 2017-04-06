@@ -2,7 +2,7 @@
 
 A Laravel-based file proxy application. Ready to go.
 
-[![Build Status](https://travis-ci.org/ipunkt/fileproxy.svg?branch=master)](https://travis-ci.org/ipunkt/fileproxy) [![StyleCI](https://styleci.io/repos/87310636/shield?branch=master)](https://styleci.io/repos/87310636)
+[![Build Status](https://img.shields.io/travis/ipunkt/fileproxy.svg?style=flat-square)](https://travis-ci.org/ipunkt/fileproxy) [![StyleCI](https://styleci.io/repos/87310636/shield?branch=master)](https://styleci.io/repos/87310636)
 
 ## Purpose
 
