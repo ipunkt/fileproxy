@@ -17,7 +17,7 @@ class StatisticsRepository
     }
 
     /**
-     * returns a statistics data collection
+     * returns a statistics data collection.
      *
      * @return \Illuminate\Support\Collection
      */

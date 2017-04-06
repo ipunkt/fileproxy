@@ -2,18 +2,18 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\RemoteFileNotAccessibleException;
 use App\ProxyFile;
 use App\RemoteFile;
-use Mimey\MimeTypes;
 use GuzzleHttp\Client;
-use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Contracts\Filesystem\Filesystem;
-use App\Exceptions\RemoteFileNotAccessibleException;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
+use Mimey\MimeTypes;
 
 class CreateRemoteFile implements ShouldQueue
 {

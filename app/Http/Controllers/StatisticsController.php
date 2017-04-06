@@ -7,7 +7,7 @@ use App\Repositories\StatisticsRepository;
 class StatisticsController extends Controller
 {
     /**
-     * sends statistics data
+     * sends statistics data.
      *
      * @param StatisticsRepository $statisticsRepository
      * @return $this

@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 class ProxyFileTransformer extends TransformerAbstract
 {
     /**
-     * transforms a proxy file
+     * transforms a proxy file.
      *
      * @param ProxyFile $proxyFile
      * @return array

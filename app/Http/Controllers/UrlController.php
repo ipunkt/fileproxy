@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ProxyFile;
-use Ramsey\Uuid\Uuid;
-use App\Jobs\CreateRemoteFile;
 use App\Http\Requests\CreateUrlRequest;
+use App\Jobs\CreateRemoteFile;
+use App\ProxyFile;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Ramsey\Uuid\Uuid;
 
 class UrlController extends Controller
 {

@@ -21,7 +21,7 @@ class ApiController extends Controller
     }
 
     /**
-     * responds item as json api response
+     * responds item as json api response.
      *
      * @param $item
      * @param TransformerAbstract $transformer
@@ -32,12 +32,13 @@ class ApiController extends Controller
     {
         $resource = new Item($item, $transformer, $resourceName);
         $data = $this->fractal->createData($resource)->toArray();
+
         return response()->json($data)
             ->header('Content-Type', 'application/vnd.api+json');
     }
 
     /**
-     * responds created resource
+     * responds created resource.
      *
      * @param $item
      * @param TransformerAbstract $transformer
@@ -48,6 +49,7 @@ class ApiController extends Controller
     {
         $resource = new Item($item, $transformer, $resourceName);
         $data = $this->fractal->createData($resource)->toArray();
+
         return response()->json($data, 201)
             ->header('Content-Type', 'application/vnd.api+json');
     }
