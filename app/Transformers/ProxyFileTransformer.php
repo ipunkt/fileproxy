@@ -13,7 +13,7 @@ class ProxyFileTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'aliases'
+        'aliases',
     ];
 
     /**

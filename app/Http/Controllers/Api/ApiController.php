@@ -32,6 +32,7 @@ class ApiController extends Controller
     {
         $resource = new Item($item, $transformer, $resourceName);
         $data = $this->fractal->createData($resource)->toArray();
+
         return $this->respondData($data, 200);
     }
 
@@ -47,6 +48,7 @@ class ApiController extends Controller
     {
         $resource = new Item($item, $transformer, $resourceName);
         $data = $this->fractal->createData($resource)->toArray();
+
         return $this->respondData($data, 201);
     }
 
