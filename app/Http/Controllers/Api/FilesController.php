@@ -8,12 +8,21 @@ use App\Jobs\CreateRemoteFile;
 use App\ProxyFile;
 use App\Transformers\ProxyFileTransformer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Item;
 use Mimey\MimeTypes;
 use Ramsey\Uuid\Uuid;
 
-class FileController extends ApiController
+class FilesController extends ApiController
 {
+    /**
+     * store a new file or remote url.
+     *
+     * @param CreateFileRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(CreateFileRequest $request)
     {
         $reference = Uuid::uuid4();
@@ -49,5 +58,27 @@ class FileController extends ApiController
         }
 
         return $this->respondCreated($proxyFile, new ProxyFileTransformer(), 'files');
+    }
+
+    /**
+     * displays the attributes for a proxy file.
+     *
+     * @param Manager $fractal
+     * @param Request $request
+     * @param string $file
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Manager $fractal, Request $request, $file)
+    {
+        $proxyFile = ProxyFile::byReference($file);
+
+        if ($request->has('include')) {
+            $fractal->parseIncludes($request->get('include'));
+        }
+
+        $resource = new Item($proxyFile, new ProxyFileTransformer(), 'files');
+        $data = $fractal->createData($resource)->toArray();
+
+        return $this->respondData($data, 200);
     }
 }

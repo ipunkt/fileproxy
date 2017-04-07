@@ -38,6 +38,7 @@ class FilesResourceTest extends TestCase
                         'size' => '4',
                         'checksum' => 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
                         'mimetype' => 'text/plain',
+                        'hits' => 0,
                     ],
                 ]
             ]);
@@ -83,6 +84,7 @@ class FilesResourceTest extends TestCase
                         'size' => '72',
                         'checksum' => 'e3d8fc7eec3e4338218b844d40a1ae86cc8581c6',
                         'mimetype' => 'application/javascript',
+                        'hits' => 0,
                     ],
                 ]
             ]);

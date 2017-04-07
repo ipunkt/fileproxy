@@ -11,9 +11,10 @@
 |
 */
 
-Route::resource('files', 'Api\FileController', [
+Route::resource('files', 'Api\FilesController', [
     'only' => [
         'store',
+        'show',
     ],
 ]);
 
