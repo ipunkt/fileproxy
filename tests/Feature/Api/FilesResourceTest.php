@@ -2,7 +2,10 @@
 
 namespace Tests\Feature\Api;
 
+use App\FileAlias;
+use App\LocalFile;
 use App\ProxyFile;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\JsonApiRequestModelConcern;
@@ -102,6 +105,105 @@ class FilesResourceTest extends TestCase
         unlink(storage_path('app/remote/35/6a/356a192b7913b04c54574d18c28d46e6395428ab'));
         rmdir(storage_path('app/remote/35/6a'));
         rmdir(storage_path('app/remote/35'));
+    }
+
+    /** @test */
+    public function it_can_not_fetch_a_files_index_resource()
+    {
+        // ARRANGE
+
+        // ACT
+        $response = $this->getJson('/api/files');
+
+        // ASSERT
+        $response->assertStatus(404);
+    }
+
+    /** @test */
+    public function it_can_fetch_a_files_resource_by_reference()
+    {
+        // ARRANGE
+        /** @var LocalFile $localFile */
+        $localFile = factory(LocalFile::class, 'full')->create();
+        $proxyFile = $localFile->proxyFile;
+
+        // ACT
+        $response = $this->getJson('/api/files/' . $proxyFile->reference);
+
+        // ASSERT
+        $response->assertStatus(200)
+            ->assertExactJson([
+                'data' => [
+                    'type' => 'files',
+                    'id' => $proxyFile->reference,
+                    'attributes' => [
+                        'filename' => $proxyFile->filename,
+                        'size' => (string)$proxyFile->size,
+                        'checksum' => $proxyFile->checksum,
+                        'mimetype' => $proxyFile->mimetype,
+                        'hits' => 0,
+                    ],
+                ],
+            ]);
+    }
+
+    /** @test */
+    public function it_can_fetch_a_files_resource_by_reference_with_aliases_included()
+    {
+        // ARRANGE
+        $now = Carbon::now();
+
+        /** @var LocalFile $localFile */
+        $localFile = factory(LocalFile::class, 'full')->create();
+        $proxyFile = $localFile->proxyFile;
+        factory(FileAlias::class)->create([
+            'proxy_file_id' => $proxyFile->getKey(),
+            'path' => 'test.pdf',
+            'valid_from' => $now,
+        ]);
+
+        // ACT
+        $response = $this->getJson('/api/files/' . $proxyFile->reference . '?include=aliases');
+
+        // ASSERT
+        $response->assertStatus(200)
+            ->assertExactJson([
+                'data' => [
+                    'type' => 'files',
+                    'id' => $proxyFile->reference,
+                    'attributes' => [
+                        'filename' => $proxyFile->filename,
+                        'size' => (string)$proxyFile->size,
+                        'checksum' => $proxyFile->checksum,
+                        'mimetype' => $proxyFile->mimetype,
+                        'hits' => 0,
+                    ],
+                    'relationships' => [
+                        'aliases' => [
+                            'data' => [
+                                [
+                                    'type' => 'aliases',
+                                    'id' => $proxyFile->reference . '.1',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'included' => [
+                    [
+                        'type' => 'aliases',
+                        'id' => $proxyFile->reference . '.1',
+                        'attributes' => [
+                            'path' => 'test.pdf',
+                            'valid_from' => $now->toIso8601String(),
+                            'valid_until' => null,
+                            'hits' => 0,
+                            'hits_left' => null,
+                            'hits_total' => null,
+                        ],
+                    ]
+                ],
+            ]);
     }
 
 }
