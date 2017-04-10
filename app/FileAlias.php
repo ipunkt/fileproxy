@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * App\FileAlias.
@@ -57,6 +58,22 @@ class FileAlias extends Model
     public static function byPath(string $path): self
     {
         return static::wherePath($path)->firstOrFail();
+    }
+
+    /**
+     * finds an alias by combined key.
+     *
+     * @param string $combinedKey
+     * @return FileAlias
+     * @throws ModelNotFoundException when combined key does not fetch a valid alias
+     */
+    public static function byCombinedKey(string $combinedKey): self
+    {
+        list($reference, $aliasId) = explode('.', $combinedKey);
+
+        $proxyFile = ProxyFile::byReference($reference);
+
+        return $proxyFile->aliases()->where('id', $aliasId)->firstOrFail();
     }
 
     /**
