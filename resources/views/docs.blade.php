@@ -20,8 +20,9 @@
 
 	<div class="side-by-side">
 		<div>
-			<p>The file proxy app serves files via aliases. So you have to create a file (via upload or remote url). After the
-		file exists you can create as many aliases as you like. Each can have different accessibility flags.</p>
+			<p>The file proxy app serves files via aliases. So you have to create a file (via upload or remote url).
+				After the
+				file exists you can create as many aliases as you like. Each can have different accessibility flags.</p>
 			<p>The main identification thing in file proxy is the returned file id (UUID4). This identifier you have to
 				remember for identification, creating aliases and fetching download hits.</p>
 			<p>There is no listing of serving files within the app. You have to remember in your source system or you
@@ -41,7 +42,7 @@
 		<div>
 			<p><strong><kbd>POST /api/files</kbd></strong></p>
 
-<pre><code>{
+			<pre><code>{
   "id": null,
   "type": "files",
   "attributes": {
@@ -76,7 +77,7 @@
 		</div>
 		<div>
 			<p><strong><kbd>POST /api/files</kbd></strong></p>
-<pre><code>{
+			<pre><code>{
   "id": null,
   "type": "files",
   "attributes": {
@@ -90,7 +91,8 @@
 
 	<div class="side-by-side">
 		<div>
-			<p>This happens when the remote files will be fetched by a queue, so you do not get a valid response in sync.</p>
+			<p>This happens when the remote files will be fetched by a queue, so you do not get a valid response in
+				sync.</p>
 		</div>
 		<div>
 			<p>Response</p>
@@ -183,6 +185,31 @@
     }
   ]
 }</code></pre>
+		</div>
+	</div>
+
+	<h4>Creating a file alias</h4>
+
+	<div class="side-by-side">
+		<div>
+			<p>A file alias is a downloadable resource. With this request a new alias can be created.</p>
+		</div>
+		<div>
+			<strong><kbd>POST /api/files/d7a3913e-44a9-4aa6-ac8e-b9441cba07f8/aliases</kbd></strong>
+			<pre><code>{
+  "data": {
+    "id": null,
+    "type": "aliases",
+    "attributes": {
+      "path": "test-2017-03.pdf",
+      "hits": 0,
+      "valid_from": "2017-04-10 12:24:35",
+      "valid_until": null
+    }
+  }
+}</code></pre>
+			<p>Response</p>
+			<p>Empty, Status Code 204.</p>
 		</div>
 	</div>
 
