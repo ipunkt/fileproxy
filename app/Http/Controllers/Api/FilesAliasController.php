@@ -7,7 +7,7 @@ use App\Jobs\CreateFileAlias;
 use App\ProxyFile;
 use Illuminate\Http\JsonResponse;
 
-class AliasController extends ApiController
+class FilesAliasController extends ApiController
 {
     /**
      * stores a new alias for given proxy file.

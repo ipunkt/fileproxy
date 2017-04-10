@@ -18,7 +18,7 @@ Route::resource('files', 'Api\FilesController', [
     ],
 ]);
 
-Route::resource('files.aliases', 'Api\AliasController', [
+Route::resource('files.aliases', 'Api\FilesAliasController', [
     'only' => [
         'store',
     ],
