@@ -40,6 +40,9 @@ After installing files locally you should configure your application. We have se
 
 We recommend running a queue - not in sync. Especially for remote file support it can be a headache when you do remote file fetching in sync.
 
+The file proxy app is a microservice with an optional web ui. We recommend running this service within your infrastructure and providing authorization and authentication yourself. Maybe a nginx serving these files can manage a auth basic check or you use your own single sign on solution providing access to this service as pass-through.
+
+We provide some example configurations in the [examples](./examples/) folder.
 
 ## Configuration
 
