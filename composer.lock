@@ -328,16 +328,16 @@
         },
         {
             "name": "ipunkt/rancherize",
-            "version": "2.5.4",
+            "version": "2.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ipunkt/rancherize.git",
-                "reference": "00838bde926886afd74e150c62d2387b2e3f3968"
+                "reference": "398d86321e901ad0a74f63af343368e6d49d7056"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ipunkt/rancherize/zipball/00838bde926886afd74e150c62d2387b2e3f3968",
-                "reference": "00838bde926886afd74e150c62d2387b2e3f3968",
+                "url": "https://api.github.com/repos/ipunkt/rancherize/zipball/398d86321e901ad0a74f63af343368e6d49d7056",
+                "reference": "398d86321e901ad0a74f63af343368e6d49d7056",
                 "shasum": ""
             },
             "require": {
@@ -377,7 +377,7 @@
                 "docker",
                 "rancher"
             ],
-            "time": "2017-04-07T15:34:11+00:00"
+            "time": "2017-04-10T14:36:37+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
