@@ -17,6 +17,10 @@ class FileAliasTransformer extends TransformerAbstract
             'hits' => $model->hits()->count(),
             'hits_left' => $model->hits_left,
             'hits_total' => $model->hits_total >= 0 ? $model->hits_total : null,
+
+            'links' => [
+                'download' => route('serve', ['alias' => $model->path]),
+            ],
         ];
     }
 }
