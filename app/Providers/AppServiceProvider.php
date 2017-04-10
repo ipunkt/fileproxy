@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(Manager::class, function () {
             $fractal = new Manager();
-            $fractal->setSerializer(new JsonApiSerializer());
+            $fractal->setSerializer(new JsonApiSerializer(config('app.url') . '/api'));
 
             return $fractal;
         });
