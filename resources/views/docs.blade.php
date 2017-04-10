@@ -18,15 +18,25 @@
 
 	<h2>Documentation</h2>
 
+	<div class="side-by-side">
+		<div>
+			<p>The file proxy app serves files via aliases. So you have to create a file (via upload or remote url). After the
+		file exists you can create as many aliases as you like. Each can have different accessibility flags.</p>
+		</div>
+	</div>
+
 	<h3>API</h3>
 
-	<h4>Serving a file or remote url</h4>
+	<h4>Serving an uploaded file</h4>
 
-	<p><strong><kbd>POST /api/files</kbd></strong></p>
+	<div class="side-by-side">
+		<div>
+			<p>Request Body has following content for file upload.</p>
+		</div>
+		<div>
+			<p><strong><kbd>POST /api/files</kbd></strong></p>
 
-	<p>Request Body has following content for file upload</p>
-<pre><code>
-{
+<pre><code>{
   "id": null,
   "type": "files",
   "attributes": {
@@ -34,24 +44,10 @@
     "source": "BASE64_ENCODED_FILE_CONTENT"
     "filename": "filename.pdf"
   }
-}
-</code></pre>
-	<p>Request Body has following content for creating a remote file to serve.</p>
-<pre><code>
-{
-  "id": null,
-  "type": "files",
-  "attributes": {
-    "type": "uri",
-    "source": "https://domain.tld/file.ext"
-  }
-}
-</code></pre>
+}</code></pre>
 
-	<p>The response for success for an uploaded file is like this.</p>
-
-<pre><code>
-{
+			<p>Response</p>
+			<pre><code>{
   "data": {
     "type": "files",
     "id": "d7a3913e-44a9-4aa6-ac8e-b9441cba07f8",
@@ -62,13 +58,38 @@
       "mimetype": "text/html"
     }
   }
-}
-</code></pre>
+}</code></pre>
+		</div>
+	</div>
 
-	<p>The response for success for a remote url is like this.</p>
+	<h4>Serving a remote url</h4>
 
-<pre><code>
-{
+	<div class="side-by-side">
+		<div>
+			<p>Request Body has following content for creating a remote file to serve.</p>
+		</div>
+		<div>
+			<p><strong><kbd>POST /api/files</kbd></strong></p>
+<pre><code>{
+  "id": null,
+  "type": "files",
+  "attributes": {
+    "type": "uri",
+    "source": "https://domain.tld/file.ext"
+  }
+}</code></pre>
+
+		</div>
+	</div>
+
+	<div class="side-by-side">
+		<div>
+			<p>This happens when the remote files will be fetched by a queue, so you do not get a valid response in sync.</p>
+		</div>
+		<div>
+			<p>Response</p>
+
+			<pre><code>{
   "data": {
     "type": "files",
     "id": "d7a3913e-44a9-4aa6-ac8e-b9441cba07f8",
@@ -79,19 +100,22 @@
       "mimetype": null
     }
   }
-}
-</code></pre>
+}</code></pre>
 
-	<p>This happens when the remote files will be fetched by a queue, so you do not get a valid response in sync.</p>
+		</div>
+	</div>
 
 	<h4>Statistics Endpoint</h4>
 
-	<p><strong><kbd>GET /api/statistics</kbd></strong></p>
+	<div class="side-by-side">
+		<div>
+			<p>You can retrieve the whole statistics for the file proxy application.</p>
+		</div>
+		<div>
+			<p><strong><kbd>GET /api/statistics</kbd></strong></p>
 
-	<p>You can retrieve the whole statistics for the file proxy application.</p>
-
-<pre><code>
-{
+			<p>Response</p>
+			<pre><code>{
   "data": {
     "type": "statistics",
     "id": "statistics",
@@ -102,7 +126,12 @@
       "hits": 0
     }
   }
-}
-</code></pre>
+}</code></pre>
+		</div>
+	</div>
+
+
+
+
 
 @endsection
