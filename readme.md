@@ -127,11 +127,11 @@ Copy following content in a `rancherize.json` file in your project root:
             },
             "php": "7.0",
             "queues": [
-				{
-					"connection": "redis",
-					"name": "default"
-				}
-			],
+                {
+                    "connection": "redis",
+                    "name": "default"
+                }
+            ],
             "environment": {
                 "APP_ENV": "local",
                 "APP_DEBUG": true,
