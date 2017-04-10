@@ -20,7 +20,7 @@ class AliasController extends Controller
     public function store(CreateAliasRequest $request, string $file)
     {
         $this->validate($request, [
-            'path' => 'route_url:' . $request->get('path') . ',serve',
+            'path' => 'route_url:'.$request->get('path').',serve',
         ]);
 
         dd($request->all());

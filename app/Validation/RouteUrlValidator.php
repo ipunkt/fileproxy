@@ -43,7 +43,7 @@ class RouteUrlValidator
         $request = Request::create($urlToVerify);
 
         /**
-         * @var string $url
+         * @var string
          * @var Route $route
          */
         foreach ($getRoutes as $url => $route) {
@@ -54,6 +54,7 @@ class RouteUrlValidator
 
             if ($route->matches($request)) {
                 $validator->errors()->add($attribute, 'The specified url is already assigned');
+
                 return false;
             }
         }
