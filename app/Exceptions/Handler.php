@@ -47,12 +47,17 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             $status = $this->getExceptionStatusCode($exception);
 
+            $title = $exception->getMessage();
+            if (empty($title)) {
+                $title = get_class($exception);
+            }
+
             return response()->json([
                 'errors' => [
                     [
                         'status' => $status,
                         'code' => $exception->getCode(),
-                        'title' => $exception->getMessage(),
+                        'title' => $title,
                     ],
                 ],
             ], $status);

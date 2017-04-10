@@ -70,4 +70,22 @@ class AliasesResourceTest extends TestCase
             ]);
     }
 
+    /** @test */
+    public function it_can_delete_an_alias_via_api()
+    {
+        // ARRANGE
+        /** @var ProxyFile $proxyFile */
+        $proxyFile = factory(ProxyFile::class)->create();
+
+        /** @var FileAlias $alias */
+        $alias = factory(FileAlias::class)->create([
+            'proxy_file_id' => $proxyFile->id,
+        ]);
+
+        // ACT
+        $response = $this->deleteJson('/api/aliases/' . $proxyFile->reference . '.' . $alias->getKey());
+
+        // ASSERT
+        $response->assertStatus(204);
+    }
 }
