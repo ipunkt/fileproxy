@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
                         'status' => $status,
                         'code' => $exception->getCode(),
                         'title' => $exception->getMessage(),
-                    ]
+                    ],
                 ],
             ], $status);
         }
@@ -78,7 +78,7 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * returns status code for exception
+     * returns status code for exception.
      *
      * @param \Exception $exception
      * @return int
