@@ -15,6 +15,6 @@ class StatisticsTransformer extends TransformerAbstract
      */
     public function transform($data)
     {
-        return ['id' => 'statistics'] + $data->toArray();
+        return ['id' => null] + $data->toArray();
     }
 }

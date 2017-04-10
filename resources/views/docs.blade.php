@@ -226,7 +226,7 @@
 			<pre><code>{
   "data": {
     "type": "statistics",
-    "id": "statistics",
+    "id": "",
     "attributes": {
       "size": 0,
       "files": 0,

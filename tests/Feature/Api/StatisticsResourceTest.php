@@ -31,6 +31,9 @@ class StatisticsResourceTest extends TestCase
                         'aliases' => 0,
                         'hits' => 0,
                     ],
+                    'links' => [
+                        'self' => 'http://localhost/api/statistics/statistics',
+                    ],
                 ]
             ]);
     }
