@@ -159,8 +159,15 @@
       "mimetype": "text/html",
       "hits": 12
     },
+    "links": {
+      "self": "http://localhost/api/files/d7a3913e-44a9-4aa6-ac8e-b9441cba07f8"
+    },
     "relationships": {
       "aliases": {
+        "links": {
+          "self": "http://localhost/api/files/d7a3913e-44a9-4aa6-ac8e-b9441cba07f8/relationships/aliases"
+          "related": "http://localhost/api/files/d7a3913e-44a9-4aa6-ac8e-b9441cba07f8/aliases"
+        },
         "data": [
           {
             "type": "aliases",
@@ -181,6 +188,10 @@
         "hits": 12,
         "hits_left' => null,
         "hits_total' => null
+      }
+      "links": {
+        "download": "http://localhost/test.pdf"
+        "self": "http://localhost/api/aliases/1f29a886-b079-3356-a5f3-c28a2a405436.1"
       }
     }
   ]
@@ -208,6 +219,49 @@
     }
   }
 }</code></pre>
+			<p>Response</p>
+			<p>Empty, Status Code 204.</p>
+		</div>
+	</div>
+
+	<h4>Retrieving a file alias</h4>
+
+	<div class="side-by-side">
+		<div>
+			<p>You can retrieve the file alias details like this.</p>
+		</div>
+		<div>
+			<p><strong><kbd>GET /api/aliases/d7a3913e-44a9-4aa6-ac8e-b9441cba07f8.1</kbd></strong></p>
+			<p>Response</p>
+			<pre><code>{
+  "data": {
+    "type": "aliases"
+    "id": "d8d73c35-ba4a-34e8-b95c-122d3ad2a9e9.1"
+    "attributes": {
+      "path": "ullam-et-nihil-ex-aut-ut.xdp"
+      "valid_from": "1994-09-01T14:30:44+00:00"
+      "valid_until": null
+      "hits": 0
+      "hits_left": null
+      "hits_total": null
+    }
+    "links": {
+      "download": "http://localhost/ullam-et-nihil-ex-aut-ut.xdp"
+      "self": "http://localhost/api/aliases/d8d73c35-ba4a-34e8-b95c-122d3ad2a9e9.1"
+    }
+  }
+}</code></pre>
+		</div>
+	</div>
+
+	<h4>Deleting a file alias</h4>
+
+	<div class="side-by-side">
+		<div>
+			<p>You can delete the file alias with this request.</p>
+		</div>
+		<div>
+			<p><strong><kbd>DELETE /api/aliases/d7a3913e-44a9-4aa6-ac8e-b9441cba07f8.1</kbd></strong></p>
 			<p>Response</p>
 			<p>Empty, Status Code 204.</p>
 		</div>
