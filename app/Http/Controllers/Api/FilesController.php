@@ -29,8 +29,7 @@ class FilesController extends ApiController
 
         if ($request->isAttachment()) {
             $content = $request->source();
-            $data = $request->get('data', []);
-            $filename = array_get($data, 'attributes.filename');
+            $filename = $request->filename();
 
             $mimetypes = new MimeTypes();
             $parts = explode('.', $filename);

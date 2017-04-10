@@ -16,7 +16,7 @@ $factory->define(App\ProxyFile::class, function (Faker\Generator $faker) {
     return [
         'reference' => $faker->uuid,
         'type' => 'local',
-        'filename' => $faker->slug.'.'.$faker->fileExtension,
+        'filename' => $faker->slug . '.' . $faker->fileExtension,
         'mimetype' => $faker->mimeType,
         'size' => $faker->numberBetween(),
         'checksum' => $faker->md5,
@@ -27,7 +27,7 @@ $factory->define(App\ProxyFile::class, function (Faker\Generator $faker) {
     return [
         'reference' => $faker->uuid,
         'type' => 'local',
-        'filename' => $faker->slug.'.'.$faker->fileExtension,
+        'filename' => $faker->slug . '.' . $faker->fileExtension,
         'mimetype' => $faker->mimeType,
         'size' => $faker->numberBetween(),
         'checksum' => $faker->md5,
@@ -38,7 +38,7 @@ $factory->define(App\ProxyFile::class, function (Faker\Generator $faker) {
     return [
         'reference' => $faker->uuid,
         'type' => 'remote',
-        'filename' => $faker->slug.'.'.$faker->fileExtension,
+        'filename' => $faker->slug . '.' . $faker->fileExtension,
         'mimetype' => $faker->mimeType,
         'size' => $faker->numberBetween(),
         'checksum' => $faker->md5,
@@ -53,11 +53,21 @@ $factory->define(App\FileAlias::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\FileAlias::class, function (Faker\Generator $faker) {
+    $now = \Carbon\Carbon::now();
+    return [
+        'path' => $faker->slug . '.' . $faker->fileExtension,
+        'hits' => $faker->randomElement([0, $faker->numberBetween()]),
+        'valid_from' => $now,
+        'valid_until' => $faker->randomElement([null, $faker->dateTimeBetween($now, '+10 weeks')]),
+    ];
+}, 'request');
+
+$factory->define(App\FileAlias::class, function (Faker\Generator $faker) {
     $proxyFile = factory(\App\ProxyFile::class)->create();
 
     return [
         'proxy_file_id' => $proxyFile->getKey(),
-        'path' => $faker->slug.'.'.$faker->fileExtension,
+        'path' => $faker->slug . '.' . $faker->fileExtension,
         'valid_from' => $faker->dateTime,
     ];
 }, 'full');
@@ -79,7 +89,7 @@ $factory->define(App\AliasHit::class, function (Faker\Generator $faker) {
 
 $factory->define(App\LocalFile::class, function (Faker\Generator $faker) {
     return [
-        'path' => '/'.$faker->slug,
+        'path' => '/' . $faker->slug,
     ];
 });
 
@@ -88,14 +98,14 @@ $factory->define(App\LocalFile::class, function (Faker\Generator $faker) {
 
     return [
         'proxy_file_id' => $proxyFile->getKey(),
-        'path' => '/'.$faker->slug,
+        'path' => '/' . $faker->slug,
     ];
 }, 'full');
 
 $factory->define(App\RemoteFile::class, function (Faker\Generator $faker) {
     return [
         'url' => $faker->url,
-        'path' => '/'.$faker->slug,
+        'path' => '/' . $faker->slug,
     ];
 });
 
@@ -105,6 +115,6 @@ $factory->define(App\RemoteFile::class, function (Faker\Generator $faker) {
     return [
         'proxy_file_id' => $proxyFile->getKey(),
         'url' => $faker->url,
-        'path' => '/'.$faker->slug,
+        'path' => '/' . $faker->slug,
     ];
 }, 'full');

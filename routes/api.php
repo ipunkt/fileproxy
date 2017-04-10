@@ -18,6 +18,12 @@ Route::resource('files', 'Api\FilesController', [
     ],
 ]);
 
+Route::resource('files.aliases', 'Api\AliasController', [
+    'only' => [
+        'store',
+    ],
+]);
+
 Route::resource('statistics', 'Api\StatisticsController', [
     'only' => [
         'index',

@@ -27,7 +27,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -38,20 +38,34 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
+        if ($request->expectsJson()) {
+            $status = $this->getExceptionStatusCode($exception);
+
+            return response()->json([
+                'errors' => [
+                    [
+                        'status' => $status,
+                        'code' => $exception->getCode(),
+                        'title' => $exception->getMessage(),
+                    ]
+                ],
+            ], $status);
+        }
+
         return parent::render($request, $exception);
     }
 
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Auth\AuthenticationException $exception
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -61,5 +75,23 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest(route('login'));
+    }
+
+    /**
+     * returns status code for exception
+     *
+     * @param \Exception $exception
+     * @return int
+     */
+    private function getExceptionStatusCode($exception): int
+    {
+        switch (true) {
+            case $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException:
+                return 404;
+            case $exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException:
+                return $exception->getStatusCode();
+        }
+
+        return 400;
     }
 }
