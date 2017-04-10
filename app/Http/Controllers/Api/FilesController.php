@@ -83,7 +83,7 @@ class FilesController extends ApiController
     }
 
     /**
-     * show all aliases by proxy file
+     * show all aliases by proxy file.
      *
      * @param string $file
      * @return \Illuminate\Http\JsonResponse
