@@ -115,7 +115,7 @@ Copy following content in a `rancherize.json` file in your project root:
             "expose-port": 18129,
             "use-app-container": false,
             "mount-workdir": true,
-            "add-redis": false,
+            "add-redis": true,
             "add-database": true,
             "database": {
                 "pma": {
@@ -126,10 +126,17 @@ Copy following content in a `rancherize.json` file in your project root:
                 "pma-port": 9755
             },
             "php": "7.0",
+            "queues": [
+				{
+					"connection": "redis",
+					"name": "default"
+				}
+			],
             "environment": {
                 "APP_ENV": "local",
                 "APP_DEBUG": true,
-                "APP_KEY": "base64:jid3KQRva+vTtpU2mK6hvWxrLI6vmOmIwn\/AEAH4ua0="
+                "APP_KEY": "base64:jid3KQRva+vTtpU2mK6hvWxrLI6vmOmIwn\/AEAH4ua0=",
+                "QUEUE_DRIVER": "redis"
             }
         }
     }
