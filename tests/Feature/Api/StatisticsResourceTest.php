@@ -24,7 +24,7 @@ class StatisticsResourceTest extends TestCase
             ->assertExactJson([
                 'data' => [
                     'type' => 'statistics',
-                    'id' => 'statistics',
+                    'id' => '',
                     'attributes' => [
                         'size' => 0,
                         'files' => 0,
@@ -32,7 +32,7 @@ class StatisticsResourceTest extends TestCase
                         'hits' => 0,
                     ],
                     'links' => [
-                        'self' => 'http://localhost/api/statistics/statistics',
+                        'self' => 'http://localhost/api/statistics/',
                     ],
                 ]
             ]);
