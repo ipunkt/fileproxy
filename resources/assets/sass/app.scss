@@ -118,6 +118,7 @@ label {
     }
 
     pre {
-        overflow-x: scroll;
+        overflow-y: none;
+        overflow-x: auto;
     }
 }
