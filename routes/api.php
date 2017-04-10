@@ -36,3 +36,6 @@ Route::resource('statistics', 'Api\StatisticsController', [
         'index',
     ],
 ]);
+
+Route::get('files/{files}/aliases', 'Api\FilesController@showAliases');
+Route::get('files/{files}/relationships/aliases', 'Api\FilesController@showAliases');

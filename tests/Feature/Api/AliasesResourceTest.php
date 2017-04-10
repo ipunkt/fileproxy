@@ -88,4 +88,85 @@ class AliasesResourceTest extends TestCase
         // ASSERT
         $response->assertStatus(204);
     }
+
+    /** @test */
+    public function it_can_retrieve_all_aliases_by_api_through_relationship_url()
+    {
+        // ARRANGE
+        /** @var ProxyFile $proxyFile */
+        $proxyFile = factory(ProxyFile::class)->create();
+
+        /** @var FileAlias $alias */
+        $alias = factory(FileAlias::class)->create([
+            'proxy_file_id' => $proxyFile->id,
+        ]);
+
+        // ACT
+        $response = $this->getJson('/api/files/' . $proxyFile->reference . '/relationships/aliases');
+
+        // ASSERT
+        $response->assertStatus(200)
+            ->assertExactJson([
+                'data' => [
+                    [
+                        'type' => 'aliases',
+                        'id' => $proxyFile->reference . '.1',
+                        'attributes' => [
+                            'path' => $alias->path,
+                            'valid_from' => $alias->valid_from->toIso8601String(),
+                            'valid_until' => null,
+                            'hits' => 0,
+                            'hits_left' => null,
+                            'hits_total' => null
+                        ],
+                        'links' => [
+                            'download' => 'http://localhost/' . $alias->path,
+                            'self' => 'http://localhost/api/aliases/' . $proxyFile->reference . '.1'
+                        ]
+                    ]
+                ]
+
+            ]);
+    }
+
+    /** @test */
+    public function it_can_retrieve_all_aliases_by_api_through_relationship_short_url()
+    {
+        // ARRANGE
+        /** @var ProxyFile $proxyFile */
+        $proxyFile = factory(ProxyFile::class)->create();
+
+        /** @var FileAlias $alias */
+        $alias = factory(FileAlias::class)->create([
+            'proxy_file_id' => $proxyFile->id,
+        ]);
+
+        // ACT
+        $response = $this->getJson('/api/files/' . $proxyFile->reference . '/aliases');
+
+        // ASSERT
+        $response->assertStatus(200)
+            ->assertExactJson([
+                'data' => [
+                    [
+                        'type' => 'aliases',
+                        'id' => $proxyFile->reference . '.1',
+                        'attributes' => [
+                            'path' => $alias->path,
+                            'valid_from' => $alias->valid_from->toIso8601String(),
+                            'valid_until' => null,
+                            'hits' => 0,
+                            'hits_left' => null,
+                            'hits_total' => null
+                        ],
+                        'links' => [
+                            'download' => 'http://localhost/' . $alias->path,
+                            'self' => 'http://localhost/api/aliases/' . $proxyFile->reference . '.1'
+                        ]
+                    ]
+                ]
+
+            ]);
+    }
+
 }

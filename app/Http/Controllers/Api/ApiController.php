@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,22 @@ class ApiController extends Controller
     public function __construct(Manager $fractal)
     {
         $this->fractal = $fractal;
+    }
+
+    /**
+     * responds collection as json api response.
+     *
+     * @param $collection
+     * @param TransformerAbstract $transformer
+     * @param string $resourceName
+     * @return JsonResponse
+     */
+    protected function respondCollection($collection, TransformerAbstract $transformer, string $resourceName): JsonResponse
+    {
+        $resource = new Collection($collection, $transformer, $resourceName);
+        $data = $this->fractal->createData($resource)->toArray();
+
+        return $this->respondData($data, Response::HTTP_OK);
     }
 
     /**

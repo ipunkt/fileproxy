@@ -6,6 +6,7 @@ use App\Http\Requests\Api\CreateFileRequest;
 use App\Jobs\CreateLocalFile;
 use App\Jobs\CreateRemoteFile;
 use App\ProxyFile;
+use App\Transformers\FileAliasTransformer;
 use App\Transformers\ProxyFileTransformer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -67,7 +68,7 @@ class FilesController extends ApiController
      * @param string $file
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Manager $fractal, Request $request, $file)
+    public function show(Manager $fractal, Request $request, string $file)
     {
         $proxyFile = ProxyFile::byReference($file);
 
@@ -79,5 +80,18 @@ class FilesController extends ApiController
         $data = $fractal->createData($resource)->toArray();
 
         return $this->respondData($data, 200);
+    }
+
+    /**
+     * show all aliases by proxy file
+     *
+     * @param string $file
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function showAliases(string $file)
+    {
+        $proxyFile = ProxyFile::byReference($file);
+
+        return $this->respondCollection($proxyFile->aliases, new FileAliasTransformer(), 'aliases');
     }
 }
