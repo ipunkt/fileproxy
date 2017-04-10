@@ -174,7 +174,7 @@
       "id":  => "d7a3913e-44a9-4aa6-ac8e-b9441cba07f8.1",
       "attributes": {
         "path": "test.pdf",
-        "valid_from": "",
+        "valid_from": "2017-04-10T09:53:34+00:00",
         "valid_until": null,
         "hits": 12,
         "hits_left' => null,
