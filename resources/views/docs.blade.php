@@ -30,7 +30,7 @@
 		</div>
 	</div>
 
-	<h3>API</h3>
+	<h3 id="api">API</h3>
 
 	<h4>Serving an uploaded file</h4>
 
