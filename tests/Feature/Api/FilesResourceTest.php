@@ -43,6 +43,9 @@ class FilesResourceTest extends TestCase
                         'mimetype' => 'text/plain',
                         'hits' => 0,
                     ],
+                    'links' => [
+                        'self' => 'http://localhost/api/files/' . $proxyFile->reference,
+                    ],
                 ]
             ]);
 
@@ -88,6 +91,9 @@ class FilesResourceTest extends TestCase
                         'checksum' => 'e3d8fc7eec3e4338218b844d40a1ae86cc8581c6',
                         'mimetype' => 'application/javascript',
                         'hits' => 0,
+                    ],
+                    'links' => [
+                        'self' => 'http://localhost/api/files/' . $proxyFile->reference,
                     ],
                 ]
             ]);
@@ -143,6 +149,9 @@ class FilesResourceTest extends TestCase
                         'mimetype' => $proxyFile->mimetype,
                         'hits' => 0,
                     ],
+                    'links' => [
+                        'self' => 'http://localhost/api/files/' . $proxyFile->reference,
+                    ],
                 ],
             ]);
     }
@@ -186,7 +195,14 @@ class FilesResourceTest extends TestCase
                                     'id' => $proxyFile->reference . '.1',
                                 ],
                             ],
+                            'links' => [
+                                'related' => 'http://localhost/api/files/' . $proxyFile->reference . '/aliases',
+                                'self' => 'http://localhost/api/files/' . $proxyFile->reference . '/relationships/aliases',
+                            ],
                         ],
+                    ],
+                    'links' => [
+                        'self' => 'http://localhost/api/files/' . $proxyFile->reference,
                     ],
                 ],
                 'included' => [
@@ -200,6 +216,10 @@ class FilesResourceTest extends TestCase
                             'hits' => 0,
                             'hits_left' => null,
                             'hits_total' => null,
+                        ],
+                        'links' => [
+                            'self' => 'http://localhost/api/aliases/' . $proxyFile->reference . '.1',
+                            'download' => 'http://localhost/test.pdf',
                         ],
                     ]
                 ],
