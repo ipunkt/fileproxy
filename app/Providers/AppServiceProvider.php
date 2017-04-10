@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use League\Fractal\Manager;
 use League\Fractal\Serializer\JsonApiSerializer;
@@ -28,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
 
             return $fractal;
         });
+
+        Validator::extend('route_url', 'App\Validation\RouteUrlValidator@validate');
     }
 
     /**

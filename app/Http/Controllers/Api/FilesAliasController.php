@@ -18,6 +18,10 @@ class FilesAliasController extends ApiController
      */
     public function store(CreateAliasRequest $request, string $file): JsonResponse
     {
+        $this->validate($request, [
+            'data.attributes.path' => 'route_url:' . $request->get('path') . ',serve',
+        ]);
+
         $proxyFile = ProxyFile::byReference($file);
 
         $this->dispatch(new CreateFileAlias($proxyFile, $request->path(), $request->hits()));
