@@ -178,8 +178,8 @@
         "valid_until": null,
         "hits": 12,
         "hits_left' => null,
-        "hits_total' => null,
-      },
+        "hits_total' => null
+      }
     }
   ]
 }</code></pre>
