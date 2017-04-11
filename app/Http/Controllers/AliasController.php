@@ -23,7 +23,6 @@ class AliasController extends Controller
             'path' => 'route_url:' . $request->get('path') . ',serve',
         ]);
 
-        dd($request->all());
         $proxyFile = ProxyFile::byReference($file);
 
         $from = Carbon::now();
