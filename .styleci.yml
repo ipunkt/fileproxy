@@ -4,9 +4,11 @@ linting: true
 
 disabled:
   - length_ordered_imports
+  - concat_without_spaces
 
 enabled:
   - alpha_ordered_imports
+  - concat_with_spaces
   - phpdoc_add_missing_param_annotation
 
 finder:
