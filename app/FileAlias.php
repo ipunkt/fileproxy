@@ -130,4 +130,9 @@ class FileAlias extends Model
 
         return $this->hits()->count() + $this->hits_left;
     }
+
+    public function filename(): string
+    {
+        return basename($this->path);
+    }
 }

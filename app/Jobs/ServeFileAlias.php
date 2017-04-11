@@ -48,7 +48,7 @@ class ServeFileAlias
         if ($fileSystem->exists($file)) {
             return new ServableFile(
                 config('filesystems.disks.' . config('filesystems.default') . '.root') . DIRECTORY_SEPARATOR . $file,
-                $proxyFile->filename,
+                $fileAlias->filename(),
                 $proxyFile->mimetype,
                 $proxyFile->checksum
             );
@@ -60,7 +60,7 @@ class ServeFileAlias
 
         return new ServableRemoteFile(
             $proxyFile->remoteFile,
-            $proxyFile->filename,
+            $fileAlias->filename(),
             $proxyFile->mimetype,
             $proxyFile->checksum
         );
