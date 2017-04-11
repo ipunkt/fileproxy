@@ -6,7 +6,7 @@ return [
      */
     'cache_remote_files' => env('FILEPROXY_CACHE_REMOTE_FILES', false),
 
-    /**
+    /*
      * runtime mode of fileproxy application
      * valid options are:
      * - default (UI + API)

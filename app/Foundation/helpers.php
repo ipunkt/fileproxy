@@ -15,7 +15,7 @@ if (! function_exists('bytesToHuman')) {
 
 if (! function_exists('mode')) {
     /**
-     * checking run mode
+     * checking run mode.
      *
      * @param string $modeToLookFor
      * @return bool
@@ -29,6 +29,7 @@ if (! function_exists('mode')) {
         }
 
         $modeToLookFor = \Illuminate\Support\Str::lower(trim($modeToLookFor));
+
         return $modeToLookFor === $runMode;
     }
 }

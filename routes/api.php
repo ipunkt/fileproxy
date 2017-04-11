@@ -11,7 +11,7 @@
 |
 */
 
-if (!mode('api')) {
+if (! mode('api')) {
     return;
 }
 
