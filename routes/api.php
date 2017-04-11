@@ -11,6 +11,10 @@
 |
 */
 
+if (!mode('api')) {
+    return;
+}
+
 Route::resource('files', 'Api\FilesController', [
     'only' => [
         'store',

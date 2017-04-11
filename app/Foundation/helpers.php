@@ -12,3 +12,23 @@ if (! function_exists('bytesToHuman')) {
         return round($bytes, 2) . ' ' . $units[$i];
     }
 }
+
+if (! function_exists('mode')) {
+    /**
+     * checking run mode
+     *
+     * @param string $modeToLookFor
+     * @return bool
+     */
+    function mode(string $modeToLookFor): bool
+    {
+        $runMode = \Illuminate\Support\Str::lower(config('fileproxy.mode'));
+
+        if ($runMode === 'default') {
+            return true;
+        }
+
+        $modeToLookFor = \Illuminate\Support\Str::lower(trim($modeToLookFor));
+        return $modeToLookFor === $runMode;
+    }
+}

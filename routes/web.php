@@ -11,46 +11,50 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+if (mode('ui')) {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::get('/stats', 'StatisticsController@index');
+
+    Route::get('file/{file}', 'FileController@show')
+        ->name('file.show')
+        ->where('file', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
+
+    Route::match(['PUT', 'PATCH'], 'file/{file}', 'FileController@update')
+        ->name('file.update')
+        ->where('file', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
+
+    Route::group(['middleware' => 'feature:web.accept_file_upload'], function () {
+        Route::resource('file', 'FileController', [
+            'only' => [
+                'create',
+                'store',
+            ],
+        ]);
+    });
+    Route::group(['middleware' => 'feature:web.accept_remote_creation'], function () {
+        Route::resource('url', 'UrlController', [
+            'only' => [
+                'create',
+                'store',
+                'show',
+            ],
+        ]);
+    });
+
+    Route::resource('file.aliases', 'AliasController', [
+        'only' => [
+            'store',
+            'destroy',
+        ],
+    ]);
+}
+
 Route::get('/docs', function () {
     return view('docs');
 });
-Route::get('/stats', 'StatisticsController@index');
-
-Route::get('file/{file}', 'FileController@show')
-    ->name('file.show')
-    ->where('file', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
-
-Route::match(['PUT', 'PATCH'], 'file/{file}', 'FileController@update')
-    ->name('file.update')
-    ->where('file', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
-
-Route::group(['middleware' => 'feature:web.accept_file_upload'], function () {
-    Route::resource('file', 'FileController', [
-        'only' => [
-            'create',
-            'store',
-        ],
-    ]);
-});
-Route::group(['middleware' => 'feature:web.accept_remote_creation'], function () {
-    Route::resource('url', 'UrlController', [
-        'only' => [
-            'create',
-            'store',
-            'show',
-        ],
-    ]);
-});
-
-Route::resource('file.aliases', 'AliasController', [
-    'only' => [
-        'store',
-        'destroy',
-    ],
-]);
 
 //  catch all
 Route::get('{alias}', 'ServeFileController@serve')

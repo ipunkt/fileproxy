@@ -50,6 +50,24 @@ The whole application is powered by configuration values in `config/fileproxy.ph
 
 ### Settings
 
+#### mode
+
+The file proxy can run in 3 different modes. The running mode can be configured by environment.
+
+`default` makes file proxy service available through web ui and api endpoints.
+
+`ui` activates only the web ui. No api routes available.
+
+`api` activates only the api endpoints.
+
+*Hint*
+
+Please do not change the mode for a running service. We always check the existing routes on creating aliases - so they do not collide with existing routes. This check won't be done after re-activating previously disabled routes.
+
+**Default**: `default`
+
+**Environment variable**: `FILEPROXY_APPLICATION_MODE`
+
 #### cache_remote_files
 
 It is possible to cache all remote files. This helps you playing a real proxy that caches all served files. If you do not cache any remote files locally than file proxy will pass through the remote url.
