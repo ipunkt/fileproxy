@@ -21,7 +21,7 @@ class ServableRemoteFile implements Sendable
         $this->remoteFile = $remoteFile;
         $this->headers['Content-Type'] = $mimetype;
         $this->headers['Content-Length'] = $remoteFile->proxyFile->size;
-        $this->headers['Content-Disposition'] = 'attachment; filename="'.$filename.'"';
+        $this->headers['Content-Disposition'] = 'attachment; filename="' . $filename . '"';
         $this->headers['E-Tag'] = $checksum;
     }
 
@@ -30,7 +30,7 @@ class ServableRemoteFile implements Sendable
         $fp = fopen($this->remoteFile->url, 'rb');
 
         foreach ($this->headers as $header => $value) {
-            header($header.': '.$value, true);
+            header($header . ': ' . $value, true);
         }
 
         fpassthru($fp);

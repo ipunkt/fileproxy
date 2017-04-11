@@ -47,7 +47,7 @@ class ServeFileAlias
         $file = $proxyFile->file->path;
         if ($fileSystem->exists($file)) {
             return new ServableFile(
-                config('filesystems.disks.'.config('filesystems.default').'.root').DIRECTORY_SEPARATOR.$file,
+                config('filesystems.disks.' . config('filesystems.default') . '.root') . DIRECTORY_SEPARATOR . $file,
                 $proxyFile->filename,
                 $proxyFile->mimetype,
                 $proxyFile->checksum

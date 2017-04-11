@@ -88,7 +88,7 @@ class CreateRemoteFile implements ShouldQueue
         } catch (\Exception $exception) {
             \DB::rollBack();
             if ($path !== null) {
-                @unlink(storage_path('app'.DIRECTORY_SEPARATOR.$path));
+                @unlink(storage_path('app' . DIRECTORY_SEPARATOR . $path));
             }
             throw $exception;
         }

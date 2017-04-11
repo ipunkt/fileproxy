@@ -37,6 +37,6 @@ class LocalFile extends Model
 
     public function getLocalStoragePath(): string
     {
-        return 'local/'.$this->getPathSeparated($this->getKey());
+        return 'local/' . $this->getPathSeparated($this->getKey());
     }
 }
