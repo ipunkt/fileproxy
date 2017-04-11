@@ -16,7 +16,7 @@ class WebUiFeatureAvailability
      */
     public function handle($request, Closure $next, $options)
     {
-        if (config('fileproxy.'.$options, false) === false) {
+        if (config('fileproxy.' . $options, false) === false) {
             abort(404);
         }
 

@@ -24,7 +24,7 @@ class UpdateFileRequest extends FormRequest
     public function rules()
     {
         return [
-            'filename' => 'required|min:6|max:'.MAX_STRING_LENGTH.'|regex:(.*?\\.[a-z0-9A-Z]+)',
+            'filename' => 'required|min:6|max:' . MAX_STRING_LENGTH . '|regex:(.*?\\.[a-z0-9A-Z]+)',
         ];
     }
 }

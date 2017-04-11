@@ -26,7 +26,7 @@ class CreateAliasRequest extends FormRequest
     {
         return [
             'data.type' => 'required|in:aliases',
-            'data.attributes.path' => 'required|min:6|max:'.MAX_STRING_LENGTH.'|unique:file_aliases,path',
+            'data.attributes.path' => 'required|min:6|max:' . MAX_STRING_LENGTH . '|unique:file_aliases,path',
             'data.attributes.hits' => 'numeric|min:0',
             'data.attributes.from' => 'sometimes|nullable|date',
             'data.attributes.until' => 'sometimes|nullable|date',

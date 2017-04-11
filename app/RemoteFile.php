@@ -46,6 +46,6 @@ class RemoteFile extends Model
 
     public function getLocalStoragePath(): string
     {
-        return 'remote/'.$this->getPathSeparated($this->getKey());
+        return 'remote/' . $this->getPathSeparated($this->getKey());
     }
 }
