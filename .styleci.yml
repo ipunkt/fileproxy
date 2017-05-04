@@ -5,10 +5,12 @@ linting: true
 disabled:
   - length_ordered_imports
   - concat_without_spaces
+  - simplified_null_return
 
 enabled:
   - alpha_ordered_imports
   - concat_with_spaces
+  - is_null
   - phpdoc_add_missing_param_annotation
 
 finder:
