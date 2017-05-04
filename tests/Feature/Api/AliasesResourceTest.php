@@ -40,7 +40,7 @@ class AliasesResourceTest extends TestCase
                     'attributes' => [
                         'path' => $alias->path,
                         'valid_from' => $alias->valid_from->toIso8601String(),
-                        'valid_until' => $alias->valid_until === null ? null : $alias->valid_until->toIso8601String(),
+                        'valid_until' => array_get($data, 'data.attributes.valid_until'),
                         'hits' => array_get($data, 'data.attributes.hits'),
                         'hits_left' => array_get($data, 'data.attributes.hits_left'),
                         'hits_total' => array_get($data, 'data.attributes.hits_total'),
