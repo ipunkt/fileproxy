@@ -91,7 +91,7 @@ class CreateAliasRequest extends FormRequest
         $until = array_get($data, 'attributes.until');
 
         if ($until === null) {
-            return;
+            return null;
         }
 
         return Carbon::parse($until);

@@ -24,7 +24,7 @@ class FilesAliasController extends ApiController
 
         $proxyFile = ProxyFile::byReference($file);
 
-        $this->dispatch(new CreateFileAlias($proxyFile, $request->path(), $request->hits()));
+        $this->dispatch(new CreateFileAlias($proxyFile, $request->path(), $request->hits(), $request->validFrom(), $request->validUntil()));
 
         return $this->respondNoContent();
     }
