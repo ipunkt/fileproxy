@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 use App\FileAlias;
 use App\ProxyFile;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\JsonApiRequestModelConcern;
@@ -30,7 +31,26 @@ class AliasesResourceTest extends TestCase
         );
 
         // ASSERT
-        $response->assertStatus(204);
+        $response->assertStatus(200);
+        $data = $response->json();
+        $response->assertExactJson([
+                'data' => [
+                    'type' => 'aliases',
+                    'id' => $proxyFile->reference . '.1',
+                    'attributes' => [
+                        'path' => $alias->path,
+                        'valid_from' => $alias->valid_from->toIso8601String(),
+                        'valid_until' => $alias->valid_until === null ? null : $alias->valid_until->toIso8601String(),
+                        'hits' => array_get($data, 'data.attributes.hits'),
+                        'hits_left' => array_get($data, 'data.attributes.hits_left'),
+                        'hits_total' => array_get($data, 'data.attributes.hits_total'),
+                    ],
+                    'links' => [
+                        'download' => 'http://localhost/' . $alias->path,
+                        'self' => 'http://localhost/api/aliases/' . $proxyFile->reference . '.1'
+                    ]
+                ]
+            ]);
     }
 
     /** @test */

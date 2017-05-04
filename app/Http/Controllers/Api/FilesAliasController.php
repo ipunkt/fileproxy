@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\FileAlias;
 use App\Http\Requests\Api\CreateAliasRequest;
 use App\Jobs\CreateFileAlias;
 use App\ProxyFile;
+use App\Transformers\FileAliasTransformer;
 use Illuminate\Http\JsonResponse;
 
 class FilesAliasController extends ApiController
@@ -24,8 +26,9 @@ class FilesAliasController extends ApiController
 
         $proxyFile = ProxyFile::byReference($file);
 
-        $this->dispatch(new CreateFileAlias($proxyFile, $request->path(), $request->hits(), $request->validFrom(), $request->validUntil()));
+        /** @var FileAlias $fileAlias */
+        $fileAlias = $this->dispatch(new CreateFileAlias($proxyFile, $request->path(), $request->hits(), $request->validFrom(), $request->validUntil()));
 
-        return $this->respondNoContent();
+        return $this->respondItem($fileAlias, new FileAliasTransformer(), 'aliases');
     }
 }

@@ -54,7 +54,7 @@ class CreateFileAlias
         try {
             \DB::beginTransaction();
 
-            $this->proxyFile->aliases()->create([
+            $alias = $this->proxyFile->aliases()->create([
                 'path' => $this->path,
                 'hits_left' => $this->hits,
                 'valid_from' => $this->validFrom,
@@ -66,5 +66,7 @@ class CreateFileAlias
             \DB::rollBack();
             throw $exception;
         }
+
+        return $alias ?? null;
     }
 }
