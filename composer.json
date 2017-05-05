@@ -12,7 +12,6 @@
 	"require": {
 		"php": ">=5.6.4",
 		"guzzlehttp/guzzle": "^6.2",
-		"ipunkt/rancherize": "^2.5",
 		"laravel/framework": "5.4.*",
 		"laravel/tinker": "~1.0",
 		"league/fractal": "^0.16",
@@ -26,6 +25,7 @@
 		"fzaninotto/faker": "~1.4",
 		"mockery/mockery": "0.9.*",
 		"league/flysystem-vfs": "^1.0",
+		"ipunkt/rancherize": "^2.5",
 		"phpunit/phpunit": "~5.7"
 	},
 	"autoload": {
