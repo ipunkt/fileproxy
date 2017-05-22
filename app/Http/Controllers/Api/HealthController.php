@@ -17,10 +17,10 @@ class HealthController extends ApiController
 	 */
 	private function respond($code, $message) {
 
-		$data = json_encode([
+		$data = [
 			'status' => $code,
 			'message' => $message,
-		]);
+		];
 
 		return $this->respondData($data, $code);
 	}
