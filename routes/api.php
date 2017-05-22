@@ -15,7 +15,7 @@ if (! mode('api')) {
     return;
 }
 
-Route::get('health', 'Api\HealthController');
+Route::get('health', 'Api\HealthController@health');
 
 Route::resource('files', 'Api\FilesController', [
     'only' => [
