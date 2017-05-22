@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 class HealthController extends ApiController
 {
-	public function health() {
+	public function health()
+	{
 
 		if ( file_put_contents( storage_path('health.txt'), date('Y-m-d H:i:s') ) === FALSE)
 			return $this->respond(503, 'storage unavailable' );
@@ -15,12 +16,13 @@ class HealthController extends ApiController
 	/**
 	 *
 	 */
-	private function respond($code, $message) {
+	private function respond($code, $message)
+	{
 
-		$data = json_encode([
+		$data = [
 			'status' => $code,
 			'message' => $message,
-		]);
+		];
 
 		return $this->respondData($data, $code);
 	}
