@@ -15,6 +15,8 @@ if (! mode('api')) {
     return;
 }
 
+Route::get('health', 'Api\HealthController');
+
 Route::resource('files', 'Api\FilesController', [
     'only' => [
         'store',
