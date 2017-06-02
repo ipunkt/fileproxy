@@ -12,7 +12,7 @@ class TokenValidation
      * @var array
      */
     protected $except = [
-        '/api/health'
+        '/api/health',
     ];
 
     /**
@@ -24,7 +24,7 @@ class TokenValidation
      */
     public function handle($request, Closure $next)
     {
-        if (!$this->inExceptArray($request)
+        if (! $this->inExceptArray($request)
             && $this->hasSecretToken()
             && $request->header($this->secretTokenName()) !== $this->secretToken()
         ) {
