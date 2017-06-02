@@ -16,7 +16,7 @@ class HealthController extends ApiController
     }
 
     /**
-     * responds given data as json
+     * responds given data as json.
      *
      * @param int $code
      * @param string $message
