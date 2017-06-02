@@ -226,4 +226,61 @@ class FilesResourceTest extends TestCase
             ]);
     }
 
+    /** @test */
+    public function it_can_update_a_proxy_file_via_api()
+    {
+        // ARRANGE
+        config(['filesystems.default' => 'local']);
+        $response = $this->postJson('/api/files', $this->createRequestModel('files', [
+            'type' => 'attachment',
+            'source' => base64_encode('test'),
+            'filename' => 'test.txt',
+        ]));
+        $response->assertStatus(201);
+
+        /** @var ProxyFile $proxyFile */
+        $proxyFile = ProxyFile::first();
+
+        // ACT
+        $response = $this->putJson('/api/files/' . $proxyFile->reference, $this->createRequestModel('files', [
+            'type' => 'attachment',
+            'source' => base64_encode('test2'),
+            'filename' => 'test2.txt',
+        ]));
+
+        // ASSERT
+        $response->assertStatus(201)
+            ->assertExactJson([
+                'data' => [
+                    'type' => 'files',
+                    'id' => $proxyFile->reference,
+                    'attributes' => [
+                        'filename' => 'test2.txt',
+                        'size' => 5,
+                        'checksum' => '109f4b3c50d7b0df729d299bc6f8e9ef9066971f',
+                        'mimetype' => 'text/plain',
+                        'hits' => 0,
+                    ],
+                    'links' => [
+                        'self' => 'http://localhost/api/files/' . $proxyFile->reference,
+                    ],
+                ]
+            ]);
+
+        $this->assertDatabaseHas('proxy_files', [
+            'id' => 1,
+            'filename' => 'test2.txt',
+        ]);
+        $this->assertDatabaseHas('local_files', [
+            'proxy_file_id' => 1,
+        ]);
+
+        //  sha1(2) => da4b9237bacccdf19c0760cab7aec4a8359010b0
+        $this->assertFileNotExists(storage_path('app/local/35/6a/356a192b7913b04c54574d18c28d46e6395428ab'));
+        $this->assertFileExists(storage_path('app/local/da/4b/da4b9237bacccdf19c0760cab7aec4a8359010b0'));
+        unlink(storage_path('app/local/da/4b/da4b9237bacccdf19c0760cab7aec4a8359010b0'));
+        rmdir(storage_path('app/local/da/4b'));
+        rmdir(storage_path('app/local/da'));
+    }
+
 }

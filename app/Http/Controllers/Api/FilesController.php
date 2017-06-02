@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\CreateFileRequest;
 use App\Jobs\CreateLocalFile;
 use App\Jobs\CreateRemoteFile;
+use App\Jobs\UpdateLocalFile;
+use App\Jobs\UpdateRemoteFile;
 use App\ProxyFile;
 use App\Transformers\FileAliasTransformer;
 use App\Transformers\ProxyFileTransformer;
@@ -93,5 +95,32 @@ class FilesController extends ApiController
         $proxyFile = ProxyFile::byReference($file);
 
         return $this->respondCollection($proxyFile->aliases, new FileAliasTransformer(), 'aliases');
+    }
+
+    public function update(CreateFileRequest $request, string $file)
+    {
+        $proxyFile = ProxyFile::byReference($file);
+
+        if ($request->isAttachment()) {
+            $content = $request->source();
+            $filename = $request->filename();
+
+            $mimetypes = new MimeTypes();
+            $parts = explode('.', $filename);
+            $extension = last($parts);
+            $mimetype = $mimetypes->getMimeType($extension);
+
+            $tempFilename = tempnam(sys_get_temp_dir(), 'proxyfile_');
+            file_put_contents($tempFilename, $content);
+
+            $job = new UpdateLocalFile($proxyFile, new UploadedFile($tempFilename, $filename, $mimetype));
+        } else {
+            $url = $request->source();
+            $job = new UpdateRemoteFile($proxyFile, $url);
+        }
+
+        $this->dispatch($job);
+
+        return $this->respondCreated($proxyFile, new ProxyFileTransformer(), 'files');
     }
 }
