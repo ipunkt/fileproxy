@@ -51,7 +51,7 @@ class UpdateLocalFile
 
         /** @var LocalFile|RemoteFile $currentFile */
         $currentFile = $this->proxyFile->file;
-        if (!$filesystem->delete($currentFile->getLocalStoragePath())) {
+        if (! $filesystem->delete($currentFile->getLocalStoragePath())) {
             throw LocalProxyFileCanNotByDeleted::throwException();
         }
         $currentFile->forceDelete();
@@ -74,7 +74,7 @@ class UpdateLocalFile
             'path' => uniqid('', true),
         ]);
 
-        if (!$filesystem->exists('local')) {
+        if (! $filesystem->exists('local')) {
             $filesystem->makeDirectory('local');
         }
 

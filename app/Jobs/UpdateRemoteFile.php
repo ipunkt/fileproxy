@@ -68,7 +68,7 @@ class UpdateRemoteFile implements ShouldQueue
 
         /** @var LocalFile|RemoteFile $currentFile */
         $currentFile = $this->proxyFile->file;
-        if (!$this->getFilesystem()->delete($currentFile->getLocalStoragePath())) {
+        if (! $this->getFilesystem()->delete($currentFile->getLocalStoragePath())) {
             throw LocalProxyFileCanNotByDeleted::throwException();
         }
         $currentFile->forceDelete();
@@ -78,7 +78,7 @@ class UpdateRemoteFile implements ShouldQueue
         try {
             \DB::beginTransaction();
 
-            $content = (string)$response->getBody();
+            $content = (string) $response->getBody();
 
             $filename = basename($this->url);
             $parts = explode('.', $filename);
@@ -132,7 +132,7 @@ class UpdateRemoteFile implements ShouldQueue
     }
 
     /**
-     * sets up filesystem
+     * sets up filesystem.
      *
      * @return Filesystem|\Illuminate\Filesystem\FilesystemAdapter
      */
@@ -140,9 +140,10 @@ class UpdateRemoteFile implements ShouldQueue
     {
         /** @var Filesystem|\Illuminate\Filesystem\FilesystemAdapter $filesystem */
         $filesystem = app(Filesystem::class);
-        if (!$filesystem->exists('remote')) {
+        if (! $filesystem->exists('remote')) {
             $filesystem->makeDirectory('remote');
         }
+
         return $filesystem;
     }
 }
