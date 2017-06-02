@@ -49,7 +49,7 @@ class CreateLocalFile
 
         /** @var \App\LocalFile $localFile */
         $localFile = $proxyFile->localFile()->create([
-            'path' => uniqid(),
+            'path' => uniqid('', true),
         ]);
 
         /** @var Filesystem|\Illuminate\Filesystem\FilesystemAdapter $filesystem */
