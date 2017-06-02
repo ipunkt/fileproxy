@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\JsonResponse;
+
 class HealthController extends ApiController
 {
     public function health()
@@ -13,7 +15,14 @@ class HealthController extends ApiController
         return $this->respond(200, 'healthy');
     }
 
-    private function respond($code, $message)
+    /**
+     * responds given data as json
+     *
+     * @param int $code
+     * @param string $message
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function respond(int $code, string $message): JsonResponse
     {
         $data = [
             'status' => $code,
