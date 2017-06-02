@@ -14,6 +14,7 @@ class HealthController extends ApiController
         }
 
         unlink($healthCheckFile);
+
         return $this->respond(200, 'healthy');
     }
 
