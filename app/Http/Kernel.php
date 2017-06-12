@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\TokenValidation;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -38,6 +39,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
+            'token',
             'bindings',
         ],
     ];
@@ -57,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'feature' => \App\Http\Middleware\WebUiFeatureAvailability::class,
+        'token' => TokenValidation::class,
     ];
 }

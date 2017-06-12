@@ -32,4 +32,21 @@ return [
          */
         'accept_remote_creation' => env('FILEPROXY_WEB_ACCEPT_REMOTE_CREATION', false),
     ],
+
+    /*
+     * api configuration
+     */
+    'api' => [
+        /*
+         * The secret token has to be set for security reason. If it is not null you have to
+         * add a http header `X-FILEPROXY-TOKEN` to each api request.
+         */
+        'secret_token' => env('FILEPROXY_API_SECRET_TOKEN', null),
+
+        /*
+         * The token name can be set for security reason. It has a default value, but you can
+         * configure your own.
+         */
+        'token_name' => env('FILEPROXY_API_TOKEN_NAME', 'X-FILEPROXY-TOKEN'),
+    ],
 ];

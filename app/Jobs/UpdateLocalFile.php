@@ -2,28 +2,37 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\LocalProxyFileCanNotByDeleted;
+use App\LocalFile;
 use App\ProxyFile;
+use App\RemoteFile;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Http\UploadedFile;
 
-class CreateLocalFile
+class UpdateLocalFile
 {
     use Dispatchable;
 
     /**
-     * @var \Illuminate\Http\UploadedFile
+     * @var ProxyFile
+     */
+    private $proxyFile;
+
+    /**
+     * @var UploadedFile
      */
     private $file;
 
     /**
-     * @var string
+     * Create a new job instance.
+     *
+     * @param ProxyFile $proxyFile
+     * @param UploadedFile $file
      */
-    private $reference;
-
-    public function __construct(string $reference, UploadedFile $file)
+    public function __construct(ProxyFile $proxyFile, UploadedFile $file)
     {
-        $this->reference = $reference;
+        $this->proxyFile = $proxyFile;
         $this->file = $file;
     }
 
@@ -31,29 +40,39 @@ class CreateLocalFile
      * Execute the job.
      *
      * @return void
+     * @throws \App\Exceptions\LocalProxyFileCanNotByDeleted
      */
     public function handle()
     {
+        /** @var Filesystem|\Illuminate\Filesystem\FilesystemAdapter $filesystem */
+        $filesystem = app(Filesystem::class);
+
+        //  remove previous file content
+
+        /** @var LocalFile|RemoteFile $currentFile */
+        $currentFile = $this->proxyFile->file;
+        if (! $filesystem->delete($currentFile->getLocalStoragePath())) {
+            throw LocalProxyFileCanNotByDeleted::throwException();
+        }
+        $currentFile->forceDelete();
+
+        //  proceed new file content
+
         $fileHandle = $this->file->openFile();
         $content = $fileHandle->fread($this->file->getSize());
 
-        $proxyFile = new ProxyFile([
-            'reference' => $this->reference,
+        $this->proxyFile->update([
             'type' => 'local',
             'filename' => $this->file->getClientOriginalName(),
             'mimetype' => $this->file->getClientMimeType(),
             'size' => $this->file->getSize(),
             'checksum' => sha1($content),
         ]);
-        $proxyFile->save();
 
         /** @var \App\LocalFile $localFile */
-        $localFile = $proxyFile->localFile()->create([
+        $localFile = $this->proxyFile->localFile()->create([
             'path' => uniqid('', true),
         ]);
-
-        /** @var Filesystem|\Illuminate\Filesystem\FilesystemAdapter $filesystem */
-        $filesystem = app(Filesystem::class);
 
         if (! $filesystem->exists('local')) {
             $filesystem->makeDirectory('local');

@@ -99,6 +99,29 @@ You can enable or disable the ability to create remote files via web frontend. T
 
 **Environment variable**: `FILEPROXY_WEB_ACCEPT_REMOTE_CREATION`
 
+### Api
+
+All settings depending on the api endpoint.
+
+#### secret_token
+
+The secret token is for security reason. Api calls can be secured by this value. If it is set you have to add a header `X-FILEPROXY-TOKEN` to each api request.
+
+When it is `null` no header validation will be executed.
+
+**Default**: `null`
+
+**Environment variable**: `FILEPROXY_API_SECRET_TOKEN`
+
+#### token_name
+
+The secret token will be checked by a header named `X-FILEPROXY-TOKEN` by default. You can override this concrete header name if you want.
+
+**Default**: `X-FILEPROXY-TOKEN`
+
+**Environment variable**: `FILEPROXY_API_TOKEN_NAME`
+
+
 ## Test
 
 All commands for running the business functions are unit tested. You can run `composer test` to run our test suite.

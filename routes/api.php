@@ -21,6 +21,7 @@ Route::resource('files', 'Api\FilesController', [
     'only' => [
         'store',
         'show',
+        'update',
     ],
 ]);
 
