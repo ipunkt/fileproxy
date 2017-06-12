@@ -8,15 +8,15 @@ class HealthController extends ApiController
 {
     public function health()
     {
-	    $healthCheckFile = storage_path('health.txt');
+        $healthCheckFile = storage_path('health.txt');
 
-	    if (@file_put_contents($healthCheckFile, date('Y-m-d H:i:s')) === false)
-		    return $this->respond(503, 'storage unavailable');
+        if (@file_put_contents($healthCheckFile, date('Y-m-d H:i:s')) === false) {
+            return $this->respond(503, 'storage unavailable');
+        }
 
+        @unlink($healthCheckFile);
 
-	    @unlink($healthCheckFile);
-
-	    return $this->respond(200, 'healthy');
+        return $this->respond(200, 'healthy');
     }
 
     /**
