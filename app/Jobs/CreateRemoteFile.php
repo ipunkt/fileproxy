@@ -113,7 +113,12 @@ class CreateRemoteFile implements ShouldQueue
         }
 
         $path = $remoteFile->getLocalStoragePath();
-        if ($filesystem->put($path, $content)) {
+
+        $fh = fopen('php://memory', 'r+');
+        fwrite($fh, $content);
+        rewind($fh);
+
+        if ($filesystem->put($path, $fh)) {
             $remoteFile->path = $path;
             $remoteFile->save();
         }

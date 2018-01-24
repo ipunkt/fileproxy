@@ -125,7 +125,12 @@ class UpdateRemoteFile implements ShouldQueue
         }
 
         $path = $remoteFile->getLocalStoragePath();
-        if ($this->getFilesystem()->put($path, $content)) {
+
+        $fh = fopen('php://memory', 'r+');
+        fwrite($fh, $content);
+        rewind($fh);
+
+        if ($this->getFilesystem()->put($path, $fh)) {
             $remoteFile->path = $path;
             $remoteFile->save();
         }
