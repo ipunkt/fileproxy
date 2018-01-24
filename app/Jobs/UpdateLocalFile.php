@@ -79,7 +79,9 @@ class UpdateLocalFile
         }
 
         $path = $localFile->getLocalStoragePath();
-        if ($filesystem->put($path, $content)) {
+
+        $fh = fopen($this->file->getRealPath(), 'rb');
+        if ($filesystem->put($path, $fh)) {
             $localFile->path = $path;
             $localFile->save();
         }
