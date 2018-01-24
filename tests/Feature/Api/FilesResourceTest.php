@@ -87,8 +87,8 @@ class FilesResourceTest extends TestCase
                     'id' => $proxyFile->reference,
                     'attributes' => [
                         'filename' => 'polyfill.min.js',
-                        'size' => '72',
-                        'checksum' => 'e3d8fc7eec3e4338218b844d40a1ae86cc8581c6',
+                        'size' => '222',
+                        'checksum' => '58e645c83460b260d7cee45d361ddf1ad212bbeb',
                         'mimetype' => 'application/javascript',
                         'hits' => 0,
                     ],
