@@ -8,7 +8,7 @@ class HealthController extends ApiController
 {
     public function health()
     {
-        $mountedCheckFile = storage_path('mounted');
+        $mountedCheckFile = storage_path('app/mounted');
         if(!@file_exists($mountedCheckFile))
             return $this->respond(503, 'storage unavailable');
 
